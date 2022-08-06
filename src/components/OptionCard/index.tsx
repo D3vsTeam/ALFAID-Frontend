@@ -16,9 +16,10 @@ const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "add", on
   
   
   return (
-    <Box>
+    <Box >
       <Text bold fontSize={"xl"} mb={2}>{heading}</Text>
       <Pressable 
+        h={100}
         borderRadius={8}
         p={3}
         borderWidth={1}
