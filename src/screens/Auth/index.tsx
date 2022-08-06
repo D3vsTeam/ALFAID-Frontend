@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { FormControl, Input, NativeBaseProvider} from "native-base";
+import { Button, FormControl, Input, NativeBaseProvider, Text} from "native-base";
 
 const Auth: React.FC = () => {
    return(
@@ -21,10 +21,12 @@ const Auth: React.FC = () => {
         size="md"
         variant="rounded"
         placeholder="Senha"/>
+        <Button variant="ghost">
+          Login
+        </Button>
       </NativeBaseProvider>
     </Container>
    );
-
 };
 
 export default Auth;
