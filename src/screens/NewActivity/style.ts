@@ -7,9 +7,9 @@ export const ViewNewAct = styled.View`
 `
 
 export const BtnSalvar = styled.TouchableOpacity`
-    background-color: #263894
-    width: 100px
-    height: 30px
-    padding: 5px
+    background-color: #263894,
+    width: 100px,
+    height: 30px,
+    padding: 5px,
     align-items: center
 `
