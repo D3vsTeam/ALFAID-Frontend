@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { Button, Flex, FormControl, Icon, Input, KeyboardAvoidingView, NativeBaseProvider, ScrollView, Text } from "native-base";
+import { Button, Flex, FormControl, Icon, Input, KeyboardAvoidingView, ScrollView } from "native-base";
 import { useAuth } from "../../hook/useAuth";
 import { Funcionario } from "../../models/Funcionario";
 import { AntDesign } from '@expo/vector-icons';

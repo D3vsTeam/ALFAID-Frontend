@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Box, Button, Flex, Icon, Pressable, Text } from 'native-base';
+import { Box, Flex, Pressable, Text } from 'native-base';
 import React from 'react';
 
 // import { Container } from './styles';

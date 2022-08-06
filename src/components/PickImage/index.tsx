@@ -1,7 +1,7 @@
 import React,{useState} from "react";
-import { View, Text,Button,Image, StyleSheet } from "react-native"
+import { View, Text,Image, StyleSheet } from "react-native"
 import * as ImagePicker from 'expo-image-picker';
-
+import { CustomButton } from "./style";
 export const PickImage = () => {
 
     const [image, setImage] = useState<String>();
@@ -30,8 +30,12 @@ export const PickImage = () => {
             <Text style={styled.textTitle}>Imagens</Text>      
             <View style={{alignItems: 'center',justifyContent:'center'}}>
             <View style={{flexDirection: 'row'}}>
-                <Button title="Carregar Imagem" onPress={pickImage} />
-                <Button title="Deletar" onPress={deleteImage}/>
+                <CustomButton onPress={pickImage}>
+                  <Text style={{color:'white'}}> Carregar Imagem</Text>
+                </CustomButton>
+                <CustomButton onPress={deleteImage}>
+                  <Text style={{color:'white'}}> Deletar Imagem</Text>
+                </CustomButton>
             </View>
             {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
             </View>

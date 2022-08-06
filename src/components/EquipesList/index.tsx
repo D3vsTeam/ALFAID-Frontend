@@ -1,10 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Center, Checkbox, Fab, HStack, Input, useToast, VStack } from "native-base";
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from "react";
 import { Funcionario } from "../../models/Funcionario";
-import { RBC } from "../../models/RBC";
-import { useNavigation } from '@react-navigation/native';
 import { useRbc } from '../../hook/useRbc';
 
 
@@ -28,13 +27,13 @@ export const EquipesList = () => {
   const handleAddFuncionario = (isSelected: boolean, funcionario: Funcionario) => {
     setRbc(prev => {
       if (isSelected) {
-
+        console.log('OPA')
         prev.equipes.push(funcionario)
       } else {
         let index = prev.equipes.findIndex(f => f === funcionario);
         prev.equipes.splice(index, 1)
       }
-      console.log('teste')
+      console.log(prev.equipes)
       return prev;
     })
   }

@@ -29,7 +29,7 @@ export const FuncionarioCard: React.FC = () => {
           alignItems={"center"}
         >
           <Box mr={4} p={3} borderRadius="full" bgColor={'gray.100'}>
-            <Ionicons ios="ios-person" name="person" size={16} color="alfa"/>
+            <Ionicons ios="ios-person" name="person" size={16} color="black"/>
           </Box>
           <Flex
             flex={1}

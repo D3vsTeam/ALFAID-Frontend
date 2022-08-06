@@ -1,9 +1,7 @@
 import React from "react";
-import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
+import { View,IconButton, Text, Box, VStack, HStack, Heading, Icon, Center, useToast } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
-import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useRbc } from "../../hook/useRbc";
 export const AddAtividades = () => {
     const navigation = useNavigation();
     const instState = [{

@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
-import { ImageBackground } from 'react-native';
 import { useAuth } from '../../hook/useAuth';
 import { FuncionarioCard, OptionCard } from '../../components'
 
