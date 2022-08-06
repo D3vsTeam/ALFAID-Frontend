@@ -22,6 +22,7 @@ const Auth: React.FC = () => {
       <NativeBaseProvider>
         <FormControl.Label>Login</FormControl.Label>
         <Input
+          h={50}
           size="md"
           variant="rounded"
           placeholder="Cpf"
@@ -29,13 +30,14 @@ const Auth: React.FC = () => {
         />
         <FormControl.Label>Password</FormControl.Label>
         <Input
-          size="md"
+          h={50}
+          mt={20}
           variant="rounded"
           placeholder="Senha"
           type="password"
           onChangeText={(text: string) => setValues({...values, senha: text})}
         />
-        <Button variant="ghost" onPress={handleLogin}>
+        <Button h={50} variant="ghost" onPress={handleLogin}>
           Login
         </Button>
       </NativeBaseProvider>

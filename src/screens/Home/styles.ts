@@ -19,3 +19,7 @@ export const viewButtons = styled.View`
 export const btn = styled.TouchableOpacity`
 background-color: darkblue 
 `
+
+export const SignOut = styled.TouchableOpacity`
+
+`
