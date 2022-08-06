@@ -1,6 +1,6 @@
+import { View,Text } from 'react-native';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Home } from './src/screens';
+import { Form, Home } from './src/screens';
 
 
 export default function App() {

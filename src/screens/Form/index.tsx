@@ -21,7 +21,6 @@ export const Form = () => {
     console.log(result);
 
     if (!result.cancelled) {
-      setImage(result.uri);
     }
   };
   const teste = async () => {

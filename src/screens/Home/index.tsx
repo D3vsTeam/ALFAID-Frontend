@@ -2,11 +2,8 @@ import React from 'react';
 import { View,TouchableOpacity, Image, Text,StyleSheet } from 'react-native';
 import { Header, HeaderAll } from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
 export const Home = () => {
-  const navigation = useNavigation();
-
 
   return (
     <HeaderAll style={{flex: 1}}>
