@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { Button, FormControl, Input, NativeBaseProvider, Text} from "native-base";
+import { Button, FormControl, Input, KeyboardAvoidingView, NativeBaseProvider, Text} from "native-base";
 
 const Auth: React.FC = () => {
    return(
-   <Container> 
+    <KeyboardEventeyboardAvoidingView>
       <Title>
         Login
       </Title>
@@ -25,7 +25,7 @@ const Auth: React.FC = () => {
           Login
         </Button>
       </NativeBaseProvider>
-    </Container>
+    </KeyboardEventeyboardAvoidingView>
    );
 };
 
