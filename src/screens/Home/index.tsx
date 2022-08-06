@@ -1,55 +1,43 @@
-import React,{useState} from 'react';
-import { View,TouchableOpacity, Image, Text,StyleSheet, Alert } from 'react-native';
-import { Header, HeaderAll, CustomBotoes,TextNome,TextTitulo,TextBtn,ViewButtons } from './styles';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Image, Text, StyleSheet, Alert } from 'react-native';
+import { Header, HeaderAll, CustomBotoes, TextNome, TextTitulo, TextBtn, ViewButtons } from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../../hook/useAuth';
+import { useNavigation } from '@react-navigation/native';
+import FuncionarioCard from '../../components/FuncionarioCard';
+import OptionCard from '../../components/OptionCard';
+import { Box } from 'native-base';
 
 export const Home = () => {
-  const {signOut} = useAuth()
-  //signOut()
+  const { signOut, funcionario } = useAuth();
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    console.log("AAA")
+    navigation.navigate('Form');
+  }
+
+
+  if (!funcionario) {
+    return <></>
+  }
+
   return (
-    <HeaderAll style={{flex: 1}}>
-      <Header>
-        <TouchableOpacity onPress={() => Alert.alert('Deseja Sair ?','',[
-            {
-              text: 'Sim',
-              onPress: () => signOut(),
-            },
-            {
-              text: 'Nao',
-            },
-          ])
-        }>
-          <Ionicons name="arrow-back" size={30} color="white" />
-        </TouchableOpacity>
-        <Image style={{height: 100, width: 100,marginTop: 30}} source={require('../../../assets/alfaEng.png')}/>
-        <View style={{alignItems: 'center'}}>
-          <TextTitulo>Bem Vindo!</TextTitulo>
-          <TextNome>Joao</TextNome>
-        </View>
-      </Header>
-      <Text style={{textAlign: 'center'}}>Menu</Text>
-
-      <ViewButtons>
-        <CustomBotoes>
-          <View style={{backgroundColor: '#263894',borderRadius: 10,padding: 20}}>
-            <Ionicons name="documents-outline" size={50} color="white" />
-          </View>
-          <View style={{justifyContent: 'center',marginLeft: 10}}>
-            <TextBtn>Documento RDC</TextBtn>
-          </View>
-        </CustomBotoes>
-
-        <CustomBotoes>
-          <View style={{backgroundColor: '#263894',borderRadius: 10,padding: 20}}>
-            <Ionicons name="documents-sharp" size={50} color="white" />
-          </View>
-          <View style={{justifyContent: 'center',marginLeft: 10}}>
-            <TextBtn>Documento RDC</TextBtn>
-          </View>
-        </CustomBotoes>
-
-      </ViewButtons>
-    </HeaderAll>
+    <Box paddingX={4} bgColor="muted.50" h={"full"}>
+      <FuncionarioCard />
+        {funcionario.isManager ? (
+          <OptionCard 
+            heading='RDC' 
+            label='Visualizar'
+            onPress={handlePress}
+          />
+        ) : (
+          <OptionCard 
+            heading='RDC' 
+            label='Gerar um novo RDC'
+            onPress={handlePress}
+          />
+        )}
+    </Box>
   )
 }

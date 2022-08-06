@@ -4,9 +4,13 @@ import { Picker } from '@react-native-picker/picker';
 import { Container } from './styles';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hook/useAuth';
 
 export const Form = () => {
+  const { funcionario } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState();
+
+  
   //const navigation = useNavigation()
   //const teste = () => {
     //navigation.navigate('Home')

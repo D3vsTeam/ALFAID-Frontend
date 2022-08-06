@@ -9,4 +9,8 @@ export class Funcionario {
 	dataAdmissao: string;
 	funcao_id: string;
 	token: string;
+	isManager: boolean;
+	funcoes: {
+		descricao: string
+	}
 }

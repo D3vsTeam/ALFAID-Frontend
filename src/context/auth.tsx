@@ -8,8 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 type AuthContextData = {
   signed: boolean,
-  funcionario: any,
-  signIn: (userData: any) => Promise<void>,
+  funcionario: Funcionario | null,
+  signIn: (funcionario: Funcionario) => Promise<void>,
   signOut: () => void,
   isLoading: boolean;
 }
@@ -27,7 +27,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       const storagedToken = await AsyncStorage.getItem("@AlfaID:token")
 
       if (storagedFunc && storagedToken) {
-        setFuncionario(JSON.parse(storagedFunc))
+        setFuncionario(JSON.parse(storagedFunc))  
         //setLoading(false)
       }
     })()
