@@ -24,15 +24,17 @@ const Auth: React.FC = () => {
         <Input
           h={50}
           size="md"
-          variant="rounded"
+          variant="outline"
           placeholder="Cpf"
+          maxLength={6}
           onChangeText={(text: string) => setValues({...values, cpf: text})}
         />
         <FormControl.Label>Password</FormControl.Label>
         <Input
+          size="md"
+          variant="rounded"
           h={50}
           mt={20}
-          variant="rounded"
           placeholder="Senha"
           type="password"
           onChangeText={(text: string) => setValues({...values, senha: text})}
