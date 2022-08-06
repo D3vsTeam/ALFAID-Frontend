@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { Button, FormControl, Input, KeyboardAvoidingView, NativeBaseProvider, Text } from "native-base";
+import { Button, FormControl, Icon, Input, KeyboardAvoidingView, NativeBaseProvider, Text } from "native-base";
 import { useAuth } from "../../hook/useAuth";
 import { Funcionario } from "../../models/Funcionario";
+import { AntDesign } from '@expo/vector-icons';
+
 
 const Auth: React.FC = () => {
   const { signIn } = useAuth();
@@ -14,7 +16,7 @@ const Auth: React.FC = () => {
   }
 
   return (
-    <KeyboardAvoidingView>
+    <Container>
       <Title>
         Login
       </Title>
@@ -25,7 +27,7 @@ const Auth: React.FC = () => {
           h={50}
           size="md"
           variant="rounded"
-          placeholder="Cpf"
+          InputLeftElement={<Icon as={<AntDesign name="user" />} size={5} ml="2" color="muted.400" />} placeholder="Name" 
           onChangeText={(text: string) => setValues({...values, cpf: text})}
         />
         <FormControl.Label>Password</FormControl.Label>
@@ -41,7 +43,7 @@ const Auth: React.FC = () => {
           Login
         </Button>
       </NativeBaseProvider>
-    </KeyboardAvoidingView>
+    </Container>
   );
 };
 
