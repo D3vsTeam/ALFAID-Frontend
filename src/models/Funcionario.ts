@@ -5,12 +5,13 @@ export class Funcionario {
 	email: string;
 	permission_id: string;
 	status: string;
-	matricula: string;
-	dataAdmissao: string;
-	funcao_id: string;
+	matricula: number;
+	dataAdmissao: Date;
+	funcao_id: number;
 	token: string;
 	isManager: boolean;
 	funcoes: {
 		descricao: string
 	}
+	isSelected: boolean;
 }

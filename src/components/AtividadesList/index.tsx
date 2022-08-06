@@ -5,20 +5,6 @@ import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 export const AddAtividades = () => {
     const navigation = useNavigation();
-    const instState = [{
-      title: "Code",
-      isCompleted: true
-    }, {
-      title: "Meeting with team at 9",
-      isCompleted: false
-    }, {
-      title: "Check Emails",
-      isCompleted: false
-    }, {
-      title: "Write an article",
-      isCompleted: false
-    }];
-    const [list, setList] = React.useState(instState);
     const [inputValue, setInputValue] = React.useState("");
     const toast = useToast();
   

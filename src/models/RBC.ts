@@ -1,7 +1,8 @@
 import { Equipe } from "./Equipe";
+import { Funcionario } from "./Funcionario";
 import { Tarefa } from "./Tarefa";
 
 export class RBC {
-  equipes: Equipe[];
-  tarefa: Tarefa[];
+  equipes: Funcionario[] = [];
+  tarefa: Tarefa[] = [];
 }

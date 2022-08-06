@@ -23,13 +23,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      //(true)
       const storagedFunc = await AsyncStorage.getItem("@AlfaID:funcionario")
       const storagedToken = await AsyncStorage.getItem("@AlfaID:token")
 
       if (storagedFunc && storagedToken) {
         setFuncionario(JSON.parse(storagedFunc))  
-        //setLoading(false)
       }
     })()
   }, [])
@@ -47,7 +45,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       await buildOfflineData();
 
       setLoading(false);
-      
+
     } catch (err: any) {
       let {message} = err?.response?.data;
       Alert.alert(message)
