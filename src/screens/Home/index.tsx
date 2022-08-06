@@ -1,28 +1,72 @@
 import React from 'react';
-import { View,TouchableOpacity, Image, Text } from 'react-native';
-import { Header, HeaderTudo } from './styles';
-// import { Container } from './styles';
+import { View,TouchableOpacity, Image, Text,StyleSheet } from 'react-native';
+import { Header, HeaderAll } from './styles';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export const Home = () => {
+  const navigation = useNavigation();
+
+
   return (
-    <HeaderTudo style={{flex: 1}}>
+    <HeaderAll style={{flex: 1}}>
       <Header>
         <Image style={{height: 100, width: 100}} source={require('../../../assets/alfaEng.png')}/>
-        <Text>Test</Text>
+        <View style={{alignItems: 'center'}}>
+          <Text style={styled.textHeader}>Bem Vindo!</Text>
+          <Text style={styled.textHeader}>Joao</Text>
+        </View>
       </Header>
-      <View>
-        <Text>Menu</Text>
+      <Text style={{textAlign: 'center'}}>Menu</Text>
+      <View style={styled.viewBotoes}>
 
-        <TouchableOpacity>
-          <Text>TESTE 1</Text>
+        <TouchableOpacity style={styled.botoes}>
+          <View style={{backgroundColor: '#263894',borderRadius: 10,padding: 20}}>
+            <Ionicons name="documents-outline" size={50} color="white" />
+          </View>
+          <View style={{justifyContent: 'center',marginLeft: 10}}>
+            <Text style={styled.textbtn}>Documento RDC</Text>
+          </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Text>TESTE 1</Text>
+        <TouchableOpacity style={styled.botoes} >
+        <View style={{backgroundColor: '#263894',borderRadius: 10,padding: 20}}>
+            <Ionicons name="documents-sharp" size={50} color="white" />
+          </View>
+          <View style={{justifyContent: 'center',marginLeft: 10}}>
+            <Text style={styled.textbtn}>Documento RDC</Text>
+          </View>
         </TouchableOpacity>
-
-
       </View>
-    </HeaderTudo>
+    </HeaderAll>
   )
 }
+
+const styled = StyleSheet.create({
+  botoes:{
+    height: 110,
+    width: 300,
+    borderWidth: 0.2,
+    borderRadius: 30,
+    padding: 0,
+    flexDirection: 'row',
+  },
+  textHeader:{
+    color:'white',
+    marginRight: 20,
+    fontSize:40
+  },
+
+
+  viewBotoes:{
+    flex: 1,
+    padding: 20,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    margin: 20
+  },
+  textbtn:{
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
+})
