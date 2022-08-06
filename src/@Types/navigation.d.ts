@@ -6,6 +6,10 @@ export declare global {
       NewActivity: undefined,
       ListDocs: undefined,
       Tasks: undefined,
+      MenuTarefas: undefined,
+      PageImg: undefined,
+      PageFunc: undefined,
+      PageAvaliacao: undefined
     }
    }
 }

@@ -17,7 +17,6 @@ export const EquipesList = () => {
   useEffect(() => {
     (async () => {
       const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
-      console.log(equipes)
       if (equipes) {
         setEquipes(JSON.parse(equipes))
       }
@@ -27,13 +26,11 @@ export const EquipesList = () => {
   const handleAddFuncionario = (isSelected: boolean, funcionario: Funcionario) => {
     setRbc(prev => {
       if (isSelected) {
-        console.log('OPA')
         prev.equipes.push(funcionario)
       } else {
         let index = prev.equipes.findIndex(f => f === funcionario);
         prev.equipes.splice(index, 1)
       }
-      console.log(prev.equipes)
       return prev;
     })
   }
@@ -44,7 +41,6 @@ export const EquipesList = () => {
 
   const handleNext = () => {
     if (rbc.equipes.length > 0) {
-      console.log(rbc.equipes)
       navigation.navigate('Tasks')
     } else {
       toast.show({
@@ -55,7 +51,7 @@ export const EquipesList = () => {
 
   return (
     <>
-      <Center w="full">
+      <Center w="full" >
         <VStack space={8} w={"full"}>
           <Input
             onChangeText={v => setInputValue(v)}
@@ -86,10 +82,12 @@ export const EquipesList = () => {
           )}
         </VStack>
       </Center>
-
       <Fab
+        justifyContent='flex-end'
+        alignItems='flex-end'
+        bottom={5}
         onPress={handleNext}
-        renderInPortal={true}
+        renderInPortal={false}
         shadow={1}
         colorScheme="success"
         placement="bottom-right"

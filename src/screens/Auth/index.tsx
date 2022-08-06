@@ -30,7 +30,7 @@ const Auth: React.FC = () => {
         alignItems={"center"}
         height={120}
         >
-          <FormControl.Label >Login</FormControl.Label>
+          <FormControl.Label >Usuário</FormControl.Label>
             <Input
               h={50}
               w="80%"
@@ -43,7 +43,7 @@ const Auth: React.FC = () => {
             />
         </Flex>
         <Flex alignItems={"center"} height={"140"}>
-          <FormControl.Label>Password</FormControl.Label>
+          <FormControl.Label>Senha</FormControl.Label>
           <Input
             size="md"
             w="80%"
@@ -54,7 +54,7 @@ const Auth: React.FC = () => {
         </Flex>
         <Flex alignItems={"center"}>
           <Button borderRadius={30} alignItems={"center"} width= "80%" h={50} colorScheme= "primary" onPress={handleLogin}>
-            Login
+            Entrar
           </Button>
         </Flex>
     </ScrollView>

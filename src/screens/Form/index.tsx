@@ -10,12 +10,7 @@ export const Form = () => {
 
   return (
     <Container>
-      <View>
        <EquipesList />
-        <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
-        </View>
-        {/* <AddAtividades/> */}
-      </View>
     </Container>
   )
 }

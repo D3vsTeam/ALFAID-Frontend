@@ -6,6 +6,7 @@ export const Tasks = ({ route, navigation }) => {
     return(
         <View>
             <AddAtividades/>
+            
         </View>
     )
 }

@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { View, Text,Image, StyleSheet } from "react-native"
 import * as ImagePicker from 'expo-image-picker';
 import { CustomButton } from "./style";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 export const PickImage = () => {
 
     const [image, setImage] = useState<String>();
@@ -14,9 +15,7 @@ export const PickImage = () => {
         aspect: [4, 3],
         quality: 1,
       });
-  
-      console.log(result);
-  
+      
       if (!result.cancelled) {
         setImage(result.uri);
       }
@@ -26,18 +25,19 @@ export const PickImage = () => {
         setImage()
       }
     return(
-        <View>
-            <Text style={styled.textTitle}>Imagens</Text>      
+        <View style={{justifyContent: 'center',alignItems: 'center', padding: 10}}>
+            <Text style={styled.textTitle}>Imagens</Text>    
+            {image === undefined ? <MaterialCommunityIcons name="file-image-plus" size={110} style={{opacity:0.2}} color="gray" /> : null}  
+            {image && <Image source={{ uri: image }} style={{ width: 300, height: 300,marginTop: 10 }} />}
             <View style={{alignItems: 'center',justifyContent:'center'}}>
-            <View style={{flexDirection: 'row'}}>
-                <CustomButton onPress={pickImage}>
-                  <Text style={{color:'white'}}> Carregar Imagem</Text>
-                </CustomButton>
-                <CustomButton onPress={deleteImage}>
-                  <Text style={{color:'white'}}> Deletar Imagem</Text>
-                </CustomButton>
-            </View>
-            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+              <View style={{flexDirection: 'row'}}>
+                  <CustomButton onPress={pickImage}>
+                    <Text style={{color:'white', fontWeight:'bold'}}> Carregar Imagem</Text>
+                  </CustomButton>
+                  <CustomButton onPress={deleteImage}>
+                    <Text style={{color:'white',fontWeight:'bold'}}> Deletar Imagem</Text>
+                  </CustomButton>
+              </View>
             </View>
         </View>
     )

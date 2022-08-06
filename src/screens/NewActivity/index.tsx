@@ -12,7 +12,6 @@ export const NewActivity = () => {
   useEffect(() => {
     (async () => {
       const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
-      console.log(equipes)
       if (equipes) {
         setEquipes(JSON.parse(equipes))
       }

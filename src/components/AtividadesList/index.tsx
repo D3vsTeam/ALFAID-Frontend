@@ -23,7 +23,7 @@ export const AddAtividades = () => {
     const toast = useToast();
   
     const addItem = title => {
-      navigation.navigate('NewActivity')
+      navigation.navigate('MenuTarefas')
       setList(prevList => {
         return [...prevList, {
           title: title,
