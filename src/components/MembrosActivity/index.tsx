@@ -5,7 +5,7 @@ import { Equipe } from "../../models/Equipe";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from "react-native";
 
-export const MembrosActivity = () => {
+export const MembrosActivity = ({item}) => {
     const instState = [{
       title: "Code",
       isCompleted: true
@@ -40,6 +40,7 @@ export const MembrosActivity = () => {
       setList(prevList => {
         const newList = [...prevList];
         newList[index].isCompleted = !newList[index].isCompleted;
+        console.log(item.equipes)
         return newList;
       });
     };

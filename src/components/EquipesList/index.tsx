@@ -4,13 +4,15 @@ import { Center, Checkbox, Fab, HStack, Input, useToast, VStack } from "native-b
 import React, { useEffect, useState } from "react";
 import { Funcionario } from "../../models/Funcionario";
 import { RBC } from "../../models/RBC";
+import { useNavigation } from '@react-navigation/native';
+
 
 export const EquipesList = () => {
   const toast = useToast();
   const [inputValue, setInputValue] = React.useState("");
   const [equipes, setEquipes] = useState<Funcionario[]>([]);
   const [rbc, setRbc] = useState<RBC>(new RBC());
-
+  const navigation = useNavigation()
 
   useEffect(() => {
     (async () => {
@@ -40,7 +42,8 @@ export const EquipesList = () => {
 
   const handleNext = () => {
     if (rbc.equipes.length > 0) {
-      
+      console.log(rbc.equipes)
+      navigation.navigate('Tasks')
     } else {
       toast.show({
         description: "Selecione pelo menos um funcionario"

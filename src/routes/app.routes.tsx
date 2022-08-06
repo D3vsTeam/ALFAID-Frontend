@@ -4,6 +4,7 @@ import { Form } from '../screens';
 import { Home } from '../screens/Home';
 import { NewActivity } from '../screens';
 import { ListDocs } from '../screens/ListDocs';
+import { Tasks } from '../screens/Tasks';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 
@@ -27,6 +28,10 @@ export const AppRoutes = () => {
       <Screen
         name='ListDocs'
         component={ListDocs}
+      />
+      <Screen
+        name='Tasks'
+        component={Tasks}
       />
     </Navigator>
   );

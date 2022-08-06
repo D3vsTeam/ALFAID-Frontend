@@ -1,15 +1,26 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { View,Text,Button,TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
-import * as ImagePicker from 'expo-image-picker';
 import { ViewNewAct, BtnSalvar} from "./style";
 import { Rating } from "../../components/Rating";
 import { MembrosActivity } from "../../components/MembrosActivity";
 import { PickImage } from "../../components/PickImage";
-
+import { Funcionario } from "../../models/Funcionario";
+import { RBC } from "../../models/RBC";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const NewActivity = () => {
+  const [equipes, setEquipes] = useState<Funcionario[]>([]);
+  const [rbc, setRbc] = useState<RBC>(new RBC());
 
-
+  useEffect(() => {
+    (async () => {
+      const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
+      console.log(equipes)
+      if (equipes) {
+        setEquipes(JSON.parse(equipes))
+      }
+    })()
+  }, [])
     return(
         <ViewNewAct >
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -23,7 +34,7 @@ export const NewActivity = () => {
             <Text style={styled.textTitle}>Avaliação</Text>
             <Rating/>
 
-            <MembrosActivity/>
+            <MembrosActivity item={rbc.equipes}/>
 
             <BtnSalvar>
               <Text style={{color: 'white', textAlign:'center'}}>Salvar</Text>

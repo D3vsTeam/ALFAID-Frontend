@@ -4,7 +4,8 @@ export declare global {
       Home: undefined,
       Form: undefined,
       NewActivity: undefined,
-      ListDocs: undefined
+      ListDocs: undefined,
+      Tasks: undefined,
     }
    }
 }
