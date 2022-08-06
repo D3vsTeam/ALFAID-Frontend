@@ -2,13 +2,18 @@ import React from 'react';
 import { View,TouchableOpacity, Image, Text,StyleSheet } from 'react-native';
 import { Header, HeaderAll } from './styles';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../../hook/useAuth';
 
 export const Home = () => {
-
+  const {signOut} = useAuth()
+  //signOut()
   return (
     <HeaderAll style={{flex: 1}}>
       <Header>
-        <Image style={{height: 100, width: 100}} source={require('../../../assets/alfaEng.png')}/>
+        <TouchableOpacity onPress={() => signOut()}>
+          <Ionicons name="arrow-back" size={30} color="white" />
+        </TouchableOpacity>
+        <Image style={{height: 100, width: 100,marginTop: 30}} source={require('../../../assets/alfaEng.png')}/>
         <View style={{alignItems: 'center'}}>
           <Text style={styled.textHeader}>Bem Vindo!</Text>
           <Text style={styled.textHeader}>Joao</Text>
@@ -51,7 +56,8 @@ const styled = StyleSheet.create({
   textHeader:{
     color:'white',
     marginRight: 20,
-    fontSize:40
+    fontSize:30  
+    
   },
 
 
