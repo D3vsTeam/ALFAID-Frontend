@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { Button, Flex, FormControl, Icon, Input, KeyboardAvoidingView, ScrollView } from "native-base";
+import { Button, Flex, FormControl, Icon, Input, KeyboardAvoidingView, NativeBaseProvider, ScrollView, Text } from "native-base";
 import { useAuth } from "../../hook/useAuth";
 import { Funcionario } from "../../models/Funcionario";
 import { AntDesign } from '@expo/vector-icons';
@@ -30,7 +30,7 @@ const Auth: React.FC = () => {
         alignItems={"center"}
         height={120}
         >
-          <FormControl.Label >Usuário</FormControl.Label>
+          <FormControl.Label >Login</FormControl.Label>
             <Input
               h={50}
               w="80%"
@@ -43,7 +43,7 @@ const Auth: React.FC = () => {
             />
         </Flex>
         <Flex alignItems={"center"} height={"140"}>
-          <FormControl.Label>Senha</FormControl.Label>
+          <FormControl.Label>Password</FormControl.Label>
           <Input
             size="md"
             w="80%"
@@ -54,7 +54,7 @@ const Auth: React.FC = () => {
         </Flex>
         <Flex alignItems={"center"}>
           <Button borderRadius={30} alignItems={"center"} width= "80%" h={50} colorScheme= "primary" onPress={handleLogin}>
-            Entrar
+            Login
           </Button>
         </Flex>
     </ScrollView>
