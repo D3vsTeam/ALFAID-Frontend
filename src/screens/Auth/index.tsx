@@ -27,14 +27,15 @@ const Auth: React.FC = () => {
           h={50}
           size="md"
           variant="rounded"
-          InputLeftElement={<Icon as={<AntDesign name="user" />} size={5} ml="2" color="muted.400" />} placeholder="Name" 
+          placeholder="Cpf"
           onChangeText={(text: string) => setValues({...values, cpf: text})}
         />
         <FormControl.Label>Password</FormControl.Label>
         <Input
+          size="md"
+          variant="rounded"
           h={50}
           mt={20}
-          variant="rounded"
           placeholder="Senha"
           type="password"
           onChangeText={(text: string) => setValues({...values, senha: text})}
