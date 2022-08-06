@@ -2,8 +2,9 @@ import React from "react";
 import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { View } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 export const AddAtividades = () => {
+    const navigation = useNavigation();
     const instState = [{
       title: "Code",
       isCompleted: true
@@ -22,6 +23,7 @@ export const AddAtividades = () => {
     const toast = useToast();
   
     const addItem = title => {
+      navigation.navigate('NewActivity')
       setList(prevList => {
         return [...prevList, {
           title: title,

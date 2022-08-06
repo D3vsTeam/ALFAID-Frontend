@@ -2,7 +2,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { Box, Button, Flex, Icon, Pressable, Text } from 'native-base';
 import React from 'react';
 
-
 // import { Container } from './styles';
 
 type OptionCardType = {
@@ -10,6 +9,7 @@ type OptionCardType = {
   label: string
   icon?: "add"
   onPress: () => void
+
 }
 
 const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "add", onPress }) => {
@@ -19,7 +19,7 @@ const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "add", on
     <Box >
       <Text bold fontSize={"xl"} mb={2}>{heading}</Text>
       <Pressable 
-        h={100}
+        h={60}
         borderRadius={8}
         p={3}
         borderWidth={1}

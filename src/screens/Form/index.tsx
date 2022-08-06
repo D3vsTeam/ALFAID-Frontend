@@ -14,17 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const Form = () => {
   const { funcionario } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const [equipes, setEquipes ] = useState<Equipe[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
-
-      if (equipes) {
-        setEquipes(JSON.parse(equipes))
-      }
-    })()
-  }, [])
 
   const instState = [{
     title: "Code",
