@@ -5,12 +5,27 @@ import { Container } from './styles';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hook/useAuth';
+import { Example } from '../../components/ListFunc';
+import { FlatList } from 'native-base';
+import { AddAtividades } from '../../components/AtividadesList';
 
 export const Form = () => {
   const { funcionario } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState();
 
-  
+  const instState = [{
+    title: "Code",
+    isCompleted: true
+  }, {
+    title: "Meeting with team at 9",
+    isCompleted: false
+  }, {
+    title: "Check Emails",
+    isCompleted: false
+  }, {
+    title: "Write an article",
+    isCompleted: false
+  }];
   //const navigation = useNavigation()
   //const teste = () => {
     //navigation.navigate('Home')
@@ -18,24 +33,12 @@ export const Form = () => {
   return (
     <Container>
       <View>
-        <Text style={styled.textTitle}>Dados</Text>
-        <Picker
-         selectedValue={selectedLanguage}
-         onValueChange={(itemValue, itemIndex) =>
-           setSelectedLanguage(itemValue)
-         }
-        >
-            <Picker.Item label="Equipe1" value="java" />
-            <Picker.Item label="Equipe2" value="js" />
-        </Picker>
+       <Example/>
 
         <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
-        <Text style={styled.textTitle}>Atividades</Text>
-        <TouchableOpacity>
-          <AntDesign name="pluscircleo" size={24} color="black" />
-        </TouchableOpacity>
-        </View>
 
+        </View>
+        <AddAtividades/>
 
       </View>
     </Container>

@@ -12,7 +12,7 @@ const FuncionarioCard: React.FC = () => {
   const cancelRef = React.useRef(null);
 
   const handlePress = () => {
-    signOut
+    signOut()
   }
 
   const hideDialog = () => setOpenDialog(false)
