@@ -5,6 +5,7 @@ import { ActivityIndicator, Alert, View } from "react-native";
 import { Funcionario } from "../models/Funcionario";
 import { authenticate } from "../service/authService";
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { buildOfflineData } from "../service/storageService";
 
 type AuthContextData = {
   signed: boolean,
@@ -40,7 +41,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     
       await AsyncStorage.setItem("@AlfaID:funcionario", JSON.stringify(response.data))
       await AsyncStorage.setItem("@AlfaID:token", response.data.token)
+      
+      setLoading(true);
 
+      await buildOfflineData();
+
+      setLoading(false);
+      
     } catch (err: any) {
       let {message} = err?.response?.data;
       Alert.alert(message)

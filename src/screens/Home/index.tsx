@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Image, Text, StyleSheet, Alert } from 'react-native';
-import { Header, HeaderAll, CustomBotoes, TextNome, TextTitulo, TextBtn, ViewButtons } from './styles';
-import { Ionicons } from '@expo/vector-icons';
-import { useAuth } from '../../hook/useAuth';
 import { useNavigation } from '@react-navigation/native';
+import { Box } from 'native-base';
 import FuncionarioCard from '../../components/FuncionarioCard';
 import OptionCard from '../../components/OptionCard';
-import { Box } from 'native-base';
+import { useAuth } from '../../hook/useAuth';
 
 export const Home = () => {
   const { signOut, funcionario } = useAuth();
