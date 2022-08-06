@@ -6,7 +6,5 @@ export const buildOfflineData = async () => {
     getEquipe()
   ]);
 
-  console.log(equipes)
-
   await AsyncStorage.setItem("@AlfaID:equipes", JSON.stringify(equipes.data))
 }

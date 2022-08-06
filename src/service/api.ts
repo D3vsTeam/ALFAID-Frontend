@@ -5,13 +5,10 @@ export const api = axios.create({
   baseURL: 'http://192.168.5.116:4000'
 })
 
-api.interceptors.request.use(config => {
-  let token: string | null = null;
+api.interceptors.request.use(async config => {
+  const token = await AsyncStorage.getItem("@AlfaID:token");
 
-  (async () => {
-    token = await AsyncStorage.getItem("@AlfaID:token");
-  })()
-  
+  console.log(token)
   const headers = { ...config.headers };
 
   if (token) {
