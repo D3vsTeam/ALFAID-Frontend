@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 
 export const ViewNewAct = styled.View`
     padding: 20px
+    
 `
 
 export const BtnSalvar = styled.TouchableOpacity`
@@ -11,5 +12,5 @@ export const BtnSalvar = styled.TouchableOpacity`
     width: 100px
     height: 30px
     padding: 5px
-    align-items: center
+    margin-top: 20px
 `
