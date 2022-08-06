@@ -8,10 +8,23 @@ import { useAuth } from '../../hook/useAuth';
 import { Example } from '../../components/ListFunc';
 import { FlatList } from 'native-base';
 import { AddAtividades } from '../../components/AtividadesList';
+import { Equipe } from '../../models/Equipe';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Form = () => {
   const { funcionario } = useAuth();
   const [selectedLanguage, setSelectedLanguage] = useState();
+  const [equipes, setEquipes ] = useState<Equipe[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
+
+      if (equipes) {
+        setEquipes(JSON.parse(equipes))
+      }
+    })()
+  }, [])
 
   const instState = [{
     title: "Code",
