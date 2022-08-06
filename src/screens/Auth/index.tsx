@@ -38,7 +38,7 @@ const Auth: React.FC = () => {
               alignItems={"center"}
               justifyContent ={"center"}
               variant="rounded"
-              InputLeftElement={<Icon as={<AntDesign Cpf="user" />} size={5} ml="2" color="muted.400" />} placeholder="name" 
+              InputLeftElement={<Icon as={<AntDesign Cpf="user" />} size={5} ml="2" color="muted.400" />} placeholder="Nome..." 
               onChangeText={(text: string) => setValues({...values, cpf: text})}
             />
         </Flex>
@@ -48,7 +48,7 @@ const Auth: React.FC = () => {
             size="md"
             w="80%"
             variant="rounded"
-            type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Password"
+            type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Senha..."
           onChangeText={(text: string) => setValues({...values, senha: text})}
             />
         </Flex>

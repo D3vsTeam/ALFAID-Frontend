@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../hook/useAuth';
 import { Ionicons } from '@expo/vector-icons';
 
-
-// import { Container } from './styles';
-
-const FuncionarioCard: React.FC = () => {
+export const FuncionarioCard: React.FC = () => {
   const { funcionario, signOut } = useAuth();
   const [openDialog, setOpenDialog] = useState(false);
   const cancelRef = React.useRef(null);

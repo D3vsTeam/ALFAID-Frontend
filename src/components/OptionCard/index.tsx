@@ -12,7 +12,7 @@ type OptionCardType = {
 
 }
 
-const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "add", onPress }) => {
+export const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "add", onPress }) => {
   
   
   return (

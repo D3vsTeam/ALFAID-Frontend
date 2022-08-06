@@ -3,7 +3,8 @@ export declare global {
     interface RootParamList {
       Home: undefined,
       Form: undefined,
-      NewActivity: undefined
+      NewActivity: undefined,
+      ListDocs: undefined
     }
    }
 }

@@ -1,17 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
 import { ImageBackground } from 'react-native';
-import FuncionarioCard from '../../components/FuncionarioCard';
-import OptionCard from '../../components/OptionCard';
 import { useAuth } from '../../hook/useAuth';
+import { FuncionarioCard, OptionCard } from '../../components'
+
+
 
 export const Home = () => {
   const { signOut, funcionario } = useAuth();
   const navigation = useNavigation();
 
   const handlePress = () => {
-    console.log("AAA")
     navigation.navigate('Form');
+  }
+  const handlePressRead = () => {
+    navigation.navigate('ListDocs')
   }
 
 
@@ -35,6 +38,11 @@ export const Home = () => {
             onPress={handlePress}
           />
         )}
+        <OptionCard 
+          heading='' 
+          label='Ler Gerados'
+          onPress={handlePressRead}
+        />
     </Box>
   )
 }
