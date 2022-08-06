@@ -40,11 +40,11 @@ export const AuthProvider: React.FC = ({ children }) => {
       await AsyncStorage.setItem("@AlfaID:funcionario", JSON.stringify(response.data))
       await AsyncStorage.setItem("@AlfaID:token", response.data.token)
       
-      setLoading(true);
+      //setLoading(true);
 
       await buildOfflineData();
 
-      setLoading(false);
+      //setLoading(false);
 
     } catch (err: any) {
       let {message} = err?.response?.data;
