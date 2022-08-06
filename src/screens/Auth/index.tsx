@@ -1,32 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import { Button, FormControl, Input, KeyboardAvoidingView, NativeBaseProvider, Text} from "native-base";
+import { Button, FormControl, Input, KeyboardAvoidingView, NativeBaseProvider, Text } from "native-base";
+import { useAuth } from "../../hook/useAuth";
+import { Funcionario } from "../../models/Funcionario";
 
 const Auth: React.FC = () => {
-   return(
+  const { signIn } = useAuth();
+  const [values, setValues] = useState<Funcionario>(new Funcionario());
+
+  const handleLogin = () => {
+    signIn(values)
+  }
+
+  return (
     <KeyboardAvoidingView>
       <Title>
         Login
       </Title>
-      <LogoImage source={logo}/>
+      <LogoImage source={logo} />
       <NativeBaseProvider>
-      <FormControl.Label>Login</FormControl.Label>
+        <FormControl.Label>Login</FormControl.Label>
         <Input
-        size="md"
-        variant="rounded"
-        placeholder="Cpf"/>
+          size="md"
+          variant="rounded"
+          placeholder="Cpf"
+          onChangeText={(text: string) => setValues({...values, cpf: text})}
+        />
         <FormControl.Label>Password</FormControl.Label>
         <Input
-        size="md"
-        variant="rounded"
-        placeholder="Senha"/>
-        <Button variant="ghost">
+          size="md"
+          variant="rounded"
+          placeholder="Senha"
+          type="password"
+          onChangeText={(text: string) => setValues({...values, senha: text})}
+        />
+        <Button variant="ghost" onPress={handleLogin}>
           Login
         </Button>
       </NativeBaseProvider>
     </KeyboardAvoidingView>
-   );
+  );
 };
 
 export default Auth;
