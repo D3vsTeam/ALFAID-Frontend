@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AddAtividades } from '../../components/AtividadesList';
 import { EquipesList } from '../../components/EquipesList';
 import { useAuth } from '../../hook/useAuth';
 import { Container } from './styles';

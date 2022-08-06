@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
-import { Feather, Entypo } from "@expo/vector-icons";
+import { Input, Checkbox, VStack, HStack, Center, useToast } from "native-base";
 import { Equipe } from "../../models/Equipe";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ScrollView } from "react-native";
 import { useRbc } from "../../hook/useRbc";
+import { Funcionario } from "../../models/Funcionario";
 
 export const MembrosActivity = () => {
   const instState = [{
@@ -23,50 +21,55 @@ export const MembrosActivity = () => {
   const [list, setList] = React.useState(instState);
   const [inputValue, setInputValue] = React.useState("");
   const toast = useToast();
-  const { rbc } = useRbc()
+  const { rbc,setRbc } = useRbc()
   const [equipes, setEquipes] = useState<Equipe[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const equipes = await AsyncStorage.getItem("@AlfaID:equipes");
-      console.log(equipes)
-      if (equipes) {
-        console.log('testeT')
-        setEquipes(JSON.parse(equipes))
+
+  const filteredList = equipes
+    ? rbc.equipes.filter(func => func.nome.startsWith(inputValue))
+    : [];
+
+  const handleAddFuncionario = (isSelected: boolean, funcionario: Funcionario) => {
+    setRbc(prev => {
+      if (isSelected) {
+        prev.equipes.push(funcionario)
+      } else {
+        let index = prev.equipes.findIndex(f => f === funcionario);
+        prev.equipes.splice(index, 1)
       }
-    })()
-  }, [])
-  console.log(rbc.equipes)
-  const handleStatusChange = index => {
-    setList(prevList => {
-      const newList = [...prevList];
-      newList[index].isCompleted = !newList[index].isCompleted;
-      return newList;
-    });
-  };
+      return prev;
+    })
+  }
 
-
-
-  return <Center w="100%">
-    <Box maxW="500" w="100%">
-      <Heading mb="2" size="md">
-        Funcionários
-      </Heading>
-      <VStack space={4}>
-        <HStack space={2}>
-          <Input flex={1} onChangeText={v => setInputValue(v)} value={inputValue} placeholder="Add Task" />
-          <IconButton borderRadius="sm" variant="solid" icon={<Feather name="search" size={24} color="white" />} onPress={() => {
-            setInputValue("");
-          }} />
-        </HStack>
-        <VStack space={2}>
-          {rbc?.equipes.map((item, itemI) => <HStack w="100%" justifyContent="space-between" alignItems="center" key={item.nome + itemI.toString()}>
-            <Checkbox  onChange={() => handleStatusChange(itemI)} value={item.nome}>
-              {item.nome}
+  return <Center w="full">
+  <VStack space={8} w={"full"}>
+    <Input
+      onChangeText={v => setInputValue(v)}
+      value={inputValue}
+      placeholder="Pesquisar"
+    />
+    {filteredList && (
+      <VStack space={10}>
+        {filteredList.map((funcionario, i) => (
+          <HStack
+            w="full"
+            justifyContent="space-between"
+            alignItems="center"
+            key={funcionario.nome + i.toString()}
+          >
+            <Checkbox
+              onChange={(isSelected) => handleAddFuncionario(isSelected, funcionario)}
+              value={funcionario.nome}
+              size="lg"
+              colorScheme="info"
+            >
+              {funcionario.nome}
             </Checkbox>
-          </HStack>)}
-        </VStack>
+
+          </HStack>
+        ))}
       </VStack>
-    </Box>
-  </Center>;
+    )}
+  </VStack>
+</Center>
 };

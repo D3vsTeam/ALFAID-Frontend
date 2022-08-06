@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Slider, Stack, Text, Box, Center, NativeBaseProvider } from "native-base";
+import { Slider, Stack, Text, Box } from "native-base";
 
 export const Rating = () => {
   const [onChangeValue, setOnChangeValue] = React.useState(1);
