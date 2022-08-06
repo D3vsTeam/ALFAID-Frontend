@@ -2,16 +2,16 @@ import React, { createContext, useEffect, useState } from "react";
 import { RBC } from "../models/RBC";
 
 type RbcContextData = {
-  rbc: RBC | undefined,
+  rbc: RBC,
   saveRbcInternal: () => void;
-  setRbc: React.Dispatch<React.SetStateAction<RBC | undefined>>,
+  setRbc: React.Dispatch<React.SetStateAction<RBC>>,
   initializeRbc: () => void;
 }
 
 export const RbcContext = createContext<RbcContextData>({} as RbcContextData);
 
 export const RbcProvider: React.FC = ({ children }) => {
-  const [rbc, setRbc] = useState<RBC>();
+  const [rbc, setRbc] = useState<RBC>(new RBC());
 
 
   useEffect(() => {

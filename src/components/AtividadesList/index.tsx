@@ -3,9 +3,9 @@ import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, 
 import { Feather, Entypo } from "@expo/vector-icons";
 import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useRbc } from "../../hook/useRbc";
 export const AddAtividades = () => {
     const navigation = useNavigation();
-
     const instState = [{
       title: "Code",
       isCompleted: true

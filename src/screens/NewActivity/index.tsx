@@ -7,10 +7,11 @@ import { PickImage } from "../../components/PickImage";
 import { Funcionario } from "../../models/Funcionario";
 import { RBC } from "../../models/RBC";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRbc } from "../../hook/useRbc";
 
 export const NewActivity = () => {
   const [equipes, setEquipes] = useState<Funcionario[]>([]);
-  const [rbc, setRbc] = useState<RBC>(new RBC());
+
 
   useEffect(() => {
     (async () => {
@@ -34,7 +35,7 @@ export const NewActivity = () => {
             <Text style={styled.textTitle}>Avaliação</Text>
             <Rating/>
 
-            <MembrosActivity item={rbc.equipes}/>
+            <MembrosActivity/>
 
             <BtnSalvar>
               <Text style={{color: 'white', textAlign:'center'}}>Salvar</Text>
