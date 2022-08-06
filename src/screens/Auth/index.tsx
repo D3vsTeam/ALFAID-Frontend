@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, LogoImage, Title } from './styles';
+import { Container, Footer, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
 import { Button, FormControl, Icon, Input, KeyboardAvoidingView, NativeBaseProvider, Text } from "native-base";
 import { useAuth } from "../../hook/useAuth";
@@ -41,10 +41,12 @@ const Auth: React.FC = () => {
           type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Password"
           onChangeText={(text: string) => setValues({...values, senha: text})}
         />
-        <Button h={50} variant="ghost" onPress={handleLogin}>
-          Login
-        </Button>
       </NativeBaseProvider>
+        <Footer>
+          <Button h={50} variant="ghost" onPress={handleLogin}>
+            Login
+          </Button>
+        </Footer>
     </Container>
   );
 };
