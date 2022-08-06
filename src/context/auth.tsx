@@ -18,16 +18,17 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [funcionario, setFuncionario] = useState<Funcionario | null>(null);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      //(true)
       const storagedFunc = await AsyncStorage.getItem("@AlfaID:funcionario")
       const storagedToken = await AsyncStorage.getItem("@AlfaID:token")
 
       if (storagedFunc && storagedToken) {
         setFuncionario(JSON.parse(storagedFunc))
-        setLoading(false)
+        //setLoading(false)
       }
     })()
   }, [])

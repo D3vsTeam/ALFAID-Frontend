@@ -1,14 +1,16 @@
-import React from 'react';
-
-import { Form, Home } from './src/screens';
-
-import { StyleSheet, Text, View } from 'react-native';
-import Auth from './src/screens/Auth';
-
-
+import { NavigationContainer } from '@react-navigation/native';
+import { NativeBaseProvider } from 'native-base';
+import { AuthProvider } from './src/context/auth';
+import Routes from './src/routes';
 
 export default function App() {
   return (
-    <Home/>
+    <NavigationContainer>
+      <AuthProvider>
+        <NativeBaseProvider>
+          <Routes />
+        </NativeBaseProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }

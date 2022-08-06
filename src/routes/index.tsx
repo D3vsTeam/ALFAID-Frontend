@@ -6,7 +6,7 @@ import { AuthRoutes } from './auth.routes';
 
 const Routes = () => {
   const { signed, isLoading } = useAuth();
-
+  
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

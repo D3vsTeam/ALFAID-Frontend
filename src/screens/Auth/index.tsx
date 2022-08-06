@@ -5,7 +5,7 @@ import { Button, FormControl, Input, KeyboardAvoidingView, NativeBaseProvider, T
 
 const Auth: React.FC = () => {
    return(
-    <KeyboardEventeyboardAvoidingView>
+    <KeyboardAvoidingView>
       <Title>
         Login
       </Title>
@@ -25,7 +25,7 @@ const Auth: React.FC = () => {
           Login
         </Button>
       </NativeBaseProvider>
-    </KeyboardEventeyboardAvoidingView>
+    </KeyboardAvoidingView>
    );
 };
 
