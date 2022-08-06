@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 export const AddAtividades = () => {
     const navigation = useNavigation();
@@ -45,11 +45,12 @@ export const AddAtividades = () => {
               setInputValue("");
             }} />
             </HStack>
-            <VStack space={2}>
-                <View>
+            <VStack space={2} >
+                <View >
               {list.map((item, itemI) => 
+              
               <HStack w="100%" justifyContent="space-between" alignItems="center" p={1} borderWidth={1} borderColor={'black'} key={item.title + itemI.toString()}>
-                  <Text width="100%" flexShrink={1} textAlign="left" mx="2" strikeThrough={item.isCompleted} _light={{
+                  <Text width="100%" flexShrink={1} textAlign="left" mx="2"  _light={{
                 color: item.isCompleted ? "gray.400" : "coolGray.800"
               }} _dark={{
                 color: item.isCompleted ? "gray.400" : "coolGray.50"
