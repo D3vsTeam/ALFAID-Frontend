@@ -3,6 +3,8 @@ import { View, TextInput, Text ,StyleSheet, TouchableOpacity} from "react-native
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { RecordAudio } from '../../components'
+
 export const MenuTarefas = ( ) => {
     const navigation = useNavigation()
     return(
@@ -11,6 +13,8 @@ export const MenuTarefas = ( ) => {
             <View style={{backgroundColor: 'lightgray',borderRadius: 5,padding: 10}}>
             <TextInput textAlignVertical='top' multiline={true} numberOfLines={5} placeholder='Observação...' />
             </View>
+
+            <RecordAudio/>
 
             <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity style={styled.buttons} onPress={()=> navigation.navigate('PageImg')}>
