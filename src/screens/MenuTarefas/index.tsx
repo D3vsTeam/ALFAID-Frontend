@@ -40,80 +40,95 @@ export const MenuTarefas = () => {
   }
 
   return (
-    <ScrollView p={3}>
-      <Heading my={4}>Tarefa Realizada</Heading>
-      <TextArea
-        backgroundColor={"gray.50"}
-        borderColor={"gray.300"}
-        p={4}
-        //autoCompleteType="s"
-        fontSize={"xl"}
-        borderRadius={8}
-        size="4xl"
-        w={"full"}
-        placeholder="Digte aqui a tarefa realizada..."
-      />
-      <Heading my={4}>Opções</Heading>
-      <VStack w={"full"} space={5} >
-        <HStack space={5} justifyContent="center">
-          <Pressable
-            {...mainProps}
-            onPress={() => navigation.navigate('PageImg')}
-          >
-            <Ionicons name="image" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Imagem</Text>
-          </Pressable>
-          <Pressable
-            {...mainProps}
-            onPress={() => navigation.navigate('PageFunc')}
-          >
-            <Ionicons name="md-people" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Equipe</Text>
-          </Pressable>
-        </HStack>
-        <HStack space={5} justifyContent="center">
-          <Pressable
-            {...mainProps}
-            onPress={() => navigation.navigate('PageAvaliacao')}
-          >
-            <Ionicons name="star" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Avaliação</Text>
-          </Pressable>
-          <Pressable
-            {...mainProps}
-          //onPress={() => navigation.navigate('PageFunc')}
-          >
-            <Ionicons name="alert-circle" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Condições</Text>
-          </Pressable>
-        </HStack>
-        <HStack space={5} justifyContent="center">
-          <Pressable
-            {...mainProps}
-          //onPress={() => navigation.navigate('PageFunc')}
-          >
-            <Ionicons name="cube" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Produto</Text>
-          </Pressable>
-          <Pressable
-            {...mainProps}
-          //onPress={() => navigation.navigate('PageFunc')}
-          >
-            <Ionicons name="navigate" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Localização</Text>
-          </Pressable>
-        </HStack>
-        <Button
-          size={"lg"}
+    <TarefaContext.Provider value={{ tarefa: task, setTarefa: setTask }}>
+      <ScrollView p={3}>
+        <Heading my={4}>Tarefa Realizada</Heading>
+        <TextArea
+          onChangeText={(value) => setTask({ ...task, descricao: value })}
+          value={task?.descricao}
+          autoCompleteType={"off"}
+          backgroundColor={"gray.50"}
+          borderColor={"gray.300"}
           p={4}
+          fontSize={"xl"}
           borderRadius={8}
-          colorScheme="success"
-          rightIcon={
-            <Ionicons name="checkmark-circle-outline" size={25} color="white" />
-          }>
-          <Text bold fontSize={"xl"} mr={2} color="white">Salvar</Text>
-        </Button>
-      </VStack>
-    </ScrollView>
+          size="4xl"
+          w={"full"}
+          placeholder="Digte aqui a tarefa realizada..."
+        />
+        <Heading my={4}>Opções</Heading>
+        <VStack w={"full"} space={5} >
+          <HStack space={5} justifyContent="center">
+            <Pressable
+              {...mainProps}
+              onPress={() => navigation.navigate('PageImg')}
+            >
+              <Ionicons name="image" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Imagem</Text>
+            </Pressable>
+            <Pressable
+              {...mainProps}
+              onPress={() => navigation.navigate('PageFunc')}
+            >
+              <Ionicons name="md-people" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Equipe</Text>
+            </Pressable>
+          </HStack>
+          <HStack space={5} justifyContent="center">
+            <Pressable
+              {...mainProps}
+              onPress={() => navigation.navigate('PageAvaliacao')}
+            >
+              <Ionicons name="star" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Avaliação</Text>
+            </Pressable>
+            <Pressable
+              {...mainProps}
+            //onPress={() => navigation.navigate('PageFunc')}
+            >
+              <Ionicons name="alert-circle" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Condições</Text>
+            </Pressable>
+          </HStack>
+          <HStack space={5} justifyContent="center">
+            <Pressable
+              {...mainProps}
+            //onPress={() => navigation.navigate('PageFunc')}
+            >
+              <Ionicons name="cube" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Produto</Text>
+            </Pressable>
+            <Pressable
+              {...mainProps}
+            //onPress={() => navigation.navigate('PageFunc')}
+            >
+              <Ionicons name="navigate" size={30} color="rgba(0,0,0,.5)" />
+              <Text bold mt={3} fontSize={"xl"}>Localização</Text>
+            </Pressable>
+          </HStack>
+          <Button
+            onPress={handleSave}
+            size={"lg"}
+            p={4}
+            borderRadius={8}
+            colorScheme="success"
+            rightIcon={
+              <Ionicons
+                name="checkmark-circle-outline"
+                size={25}
+                color="white"
+              />
+            }>
+            <Text
+              bold
+              fontSize={"xl"}
+              mr={2}
+              color="white">
+              Salvar
+            </Text>
+          </Button>
+        </VStack>
+      </ScrollView>
+    </TarefaContext.Provider>
   )
 }
