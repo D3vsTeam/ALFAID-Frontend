@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, LogoImage, Title } from './styles';
 import logo from '../../assets/logo.png'
-import bg from '../../assets/bg.png'
+import bg from '../../assets/bg.jpg'
 import { Box, Button, Flex, FormControl, Heading, Icon, Image, Input, InputGroup, KeyboardAvoidingView, NativeBaseProvider, ScrollView, Text, View, VStack } from "native-base";
 import { useAuth } from "../../hook/useAuth";
 import { Funcionario } from "../../models/Funcionario";
@@ -12,11 +12,14 @@ import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
 const Auth: React.FC = () => {
   const { signIn } = useAuth();
-  const [values, setValues] = useState<Funcionario>(new Funcionario());
+  const [values, setValues] = useState<Funcionario>({} as Funcionario);
   const [show, setShow] = React.useState(false);
 
   const handleLogin = () => {
-    signIn(values)
+    //signIn({ cpf: '21354311110', senha: 'alfa@213' })
+    if (values?.cpf && values.senha) {
+      signIn(values)
+    }
   }
 
 
@@ -27,46 +30,67 @@ const Auth: React.FC = () => {
           <Image
             flex={1}
             w={null}
-            marginTop={-500}
+            marginTop={0}
             source={bg}
+            resizeMode="cover"
+            resizeMethod="scale"
           />
         </View>
-        <Heading>
-          Entrar
-        </Heading>
         <Box
           bgColor={"white"}
           position={"absolute"}
           bottom={0}
           left={0}
           right={0}
-          paddingY={30}
+          paddingY={35}
           paddingX={10}
           borderTopRadius={8}
         >
           <VStack space={4}>
+            <Heading>
+              Login
+            </Heading>
             <InputGroup flexDirection={"column"}>
               <FormControl.Label>CPF</FormControl.Label>
               <Input
+                borderRadius={8}
                 size="md"
                 w={"full"}
                 InputLeftElement={
-                  <Icon as={<AntDesign Cpf="user" />} size={5} ml="2" color="muted.400" />} placeholder="Nome..."
+                  <Icon as={<AntDesign name="user" />} size={5} ml="2" color="muted.400" />} placeholder="Digte seu CPF"
                 onChangeText={(text: string) => setValues({ ...values, cpf: text })}
               />
             </InputGroup>
             <InputGroup flexDirection={"column"}>
               <FormControl.Label>Senha</FormControl.Label>
               <Input
+                borderRadius={8}
                 size="md"
-                type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Senha..."
+                type={show ? "text" : "password"}
+                InputRightElement={
+                  <Icon
+                    as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />}
+                    size={5} mr="2" color="muted.400" onPress={() => setShow(!show)}
+                  />
+                }
+                placeholder="Digte sua senha..."
                 onChangeText={(text: string) => setValues({ ...values, senha: text })}
               />
             </InputGroup>
-            <Button 
-              colorScheme="primary" 
+            <Button
+              borderRadius={8}
+              colorScheme="primary"
               onPress={handleLogin}
               my={5}
+              size="lg"
+              rightIcon={
+                <MaterialIcons
+                  name="login"
+                  size={16}
+                  color="white"
+                />
+              }
+
             >
               Entrar
             </Button>
@@ -75,52 +99,6 @@ const Auth: React.FC = () => {
       </View>
     </TouchableWithoutFeedback>
   )
-
-  /* 
-    return (
-      <Container>
-        <KeyboardAvoidingView
-          behavior={"padding"}>
-          <ScrollView style={{ width: "100%" }}>
-            <Title>
-              Login
-            </Title>
-            <LogoImage source={logo} />
-            <Flex
-              alignItems={"center"}
-              height={120}
-            >
-              <FormControl.Label >Login</FormControl.Label>
-              <Input
-                h={50}
-                w="80%"
-                size="md"
-                alignItems={"center"}
-                justifyContent={"center"}
-                variant="rounded"
-                InputLeftElement={<Icon as={<AntDesign Cpf="user" />} size={5} ml="2" color="muted.400" />} placeholder="Nome..."
-                onChangeText={(text: string) => setValues({ ...values, cpf: text })}
-              />
-            </Flex>
-            <Flex alignItems={"center"} height={"140"}>
-              <FormControl.Label>Password</FormControl.Label>
-              <Input
-                size="md"
-                w="80%"
-                variant="rounded"
-                type={show ? "text" : "password"} InputRightElement={<Icon as={<MaterialIcons name={values ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" onPress={() => setShow(!show)} />} placeholder="Senha..."
-                onChangeText={(text: string) => setValues({ ...values, senha: text })}
-              />
-            </Flex>
-            <Flex alignItems={"center"}>
-              <Button borderRadius={30} alignItems={"center"} width="80%" h={50} colorScheme="primary" onPress={handleLogin}>
-                Login
-              </Button>
-            </Flex>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </Container>
-    ); */
 };
 
 export default Auth;
