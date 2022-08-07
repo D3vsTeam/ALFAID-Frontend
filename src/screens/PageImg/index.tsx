@@ -5,119 +5,96 @@ import {Camera, CameraType } from "expo-camera";
 import { useEffect, useRef } from "react";
 import {FontAwesome} from "@expo/vector-icons"
 import { MaterialIcons } from '@expo/vector-icons'; 
-import * as MediaLibrary from 'expo-media-library';
 
 export const PageImg = () => {
-    const camRef = useRef (null);
-    const [type, setType] = useState(CameraType.back);
-    const [hasPermission, setHasPermission] = useState(true);
-    const [capturedPhoto, setCapturePhoto] = useState(null);
-    const [open,setOpen] = useState(false);
+  const [image, setImage] = useState<string>();
+  const navigation = useNavigation();
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
 
-    useEffect(() => {
-        (async () => {
-          const { status } = await Camera.requestCameraPermissionsAsync();
-          setHasPermission(status === 'granted');
-        })();
-      }, []);
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
+  const deleteImage = async () => {
+    setImage("")
+  }
 
-      
-      if (hasPermission === null) {
-        return <View />;    
-      }
-      if (hasPermission === false) {
-        return <Text> Acesso negado!</Text>;
-      }
+  return (
+    <Box>
+      {!image ? (
+        <Center
+          borderWidth={3}
+          borderStyle="dashed"
+          borderColor={"gray.200"}
+          w={"90%"}
+          bgColor={"gray.100"}
+          borderRadius={10}
+          px={5}
+          py={32}
+          m={5}
+        >
+          <Text fontSize={"xl"} >
+            Sem imagem
+          </Text>
+        </Center>
+      ) : (
+        <Center
+          w={"90%"}
+          borderRadius={10}
+          m={5}
+        >
+          <Image source={{ uri: image }} style={{ width: 300, height: 300, marginTop: 10 }} />
 
-      async function takePickute() {
-        if(camRef){
-                const data = await camRef.current.takePicturesAsync();
-                setCapturePhoto(data.uri);
-                setOpen(true);
-                console.log(data); 
-        }
-      }  
-    return(
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-            PickImage
-            <SafeAreaView style={styles.container}>
-                <Camera style={{flex: 1}}
-                type={type}
-                ref={camRef}
-                >
-                    <View style={{flex: 1, backgroundColor: 'transparent', flexDirection: 'row'}}>
-                        <TouchableOpacity
-                            style={{
-                                position: 'absolute',
-                                bottom: 20,
-                                left: 20,
-                            }}
-                                onPress={() => {
-                                    setType(type === CameraType.back ? CameraType.front : CameraType.back);
-
-                                    }}>
-                            <Text style={{ fontSize:20,marginBottom:13,color:"#fff"  }}> Trocar</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Camera>
-
-                <TouchableOpacity>
-                    <FontAwesome name= "camera" size={23} color='#fff' />
-                </TouchableOpacity>
-                {
-                    capturedPhoto &&
-                    <Modal
-                    animationType='slide'
-                    transparent={false}
-                    visible={open}  
-                    >
-                        <View style={{flex: 1, justifyContent: 'center', alignItems:' center', margin: 20}}>
-
-                            <View style={{margin: 10, flexDirection:'row'}}>
-                                <TouchableOpacity style={{margin: 10}} onPress={() => setOpen(false)}>
-                                    <FontAwesome name="window-close" size={50} color="#FF0000"/>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={{margin: 10}} onPress={() => setOpen(false)}>
-                                    <FontAwesome name="upload" size={50} color="#121212"/>
-                                </TouchableOpacity>
-                            </View>
-                            <Image
-                            style={{width: '100%', height:450, borderRadius:20}} 
-                            source={{ uri: capturedPhoto}}
-                            />
-
-                        </View> 
-                    </Modal>
-                }
-            </SafeAreaView>
-        </View>
-    )
+        </Center>
+      )}
+      <VStack
+        px={5}
+        space={5}
+      >
+        <HStack>
+          <Pressable
+            flex={1}
+            padding={5}
+            bgColor={"darkBlue.700"}
+            borderRadius={8}
+            onPress={pickImage}
+          >
+            <Center flexDir={"row"}>
+              <Ionicons name="cloud-upload" size={20} color="white" />
+              <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
+                {!image ? "Procurar imagem" : "Alterar Imagem"}
+              </Text>
+            </Center>
+          </Pressable>
+          {image &&
+            <Button colorScheme={"error"} borderRadius={8} ml={5} flex={.2} onPress={deleteImage}>
+              <Ionicons name="trash" size={20} color="white" />
+            </Button>
+          }
+        </HStack>
+        <Pressable
+          padding={5}
+          bgColor={"darkBlue.700"}
+          borderRadius={8}
+          onPress={() => navigation.navigate("PageCamera")}
+        >
+          <Center flexDir={"row"}>
+            <Ionicons name="camera" size={20} color="white" />
+            <Text ml={5} textAlign="center" fontSize={"lg"} color="white" >
+              Tirar foto
+            </Text>
+          </Center>
+        </Pressable>
+      </VStack>
+    </Box>
+  )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      height:600,
-
-    },
-    camera: {
-      flex: 1,
-    },
-    buttonContainer: {
-      flex: 1,
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-      margin: 20,
-    },
-    button: {
-      flex: 0.1,
-      alignSelf: 'flex-end',
-      alignItems: 'center',
-    },
-    text: {
-      fontSize: 18,
-      color: 'white',
-    },
-  });

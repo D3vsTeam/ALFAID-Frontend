@@ -5,18 +5,29 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Tarefa } from "../../models/Tarefa";
 import { useRbc } from "../../hook/useRbc";
-import { Box, FormControl, HStack, Input, InputGroup, TextArea, VStack, Pressable, Text, Heading, Icon } from "native-base";
+import { Box, FormControl, HStack, Input, InputGroup, TextArea, VStack, Pressable, Text, Heading, Icon, ScrollView, Button, Spacer } from "native-base";
 
 
 export const MenuTarefas = ({ }) => {
-  const { rbc } = useRbc();
+  const { rbc, setRbc } = useRbc();
   const navigation = useNavigation();
   const route = useRoute();
   const { tarefa } = route.params as { tarefa: Tarefa }
 
+  useEffect(() => {
+    if (!tarefa) {
+      setRbc(prev => {
+        prev.tarefa.push(new Tarefa())
+        return prev;
+      })
+    } else {
+      
+    }
+  }, [])
+
   const mainProps = {
-    w: 150,
-    h: 150,
+    w: 170,
+    h: 130,
     background: "gray.50",
     justifyContent: "center",
     alignItems: "center",
@@ -27,11 +38,13 @@ export const MenuTarefas = ({ }) => {
   }
 
   return (
-    <Box p={3}>
-      <FormControl.Label fontSize={"xl"}>Tarefa Realizada</FormControl.Label>
+    <ScrollView p={3}>
+      <Heading my={4}>Tarefa Realizada</Heading>
       <TextArea
+        backgroundColor={"gray.50"}
+        borderColor={"gray.300"}
         p={4}
-        autoCompleteType=""
+        //autoCompleteType="s"
         fontSize={"xl"}
         borderRadius={8}
         size="4xl"
@@ -39,8 +52,8 @@ export const MenuTarefas = ({ }) => {
         placeholder="Digte aqui a tarefa realizada..."
       />
       <Heading my={4}>Opções</Heading>
-      <VStack w={"full"} space={8} >
-        <HStack space={8} justifyContent="center">
+      <VStack w={"full"} space={5} >
+        <HStack space={5} justifyContent="center">
           <Pressable
             {...mainProps}
             onPress={() => navigation.navigate('PageImg')}
@@ -56,7 +69,7 @@ export const MenuTarefas = ({ }) => {
             <Text bold mt={3} fontSize={"xl"}>Equipe</Text>
           </Pressable>
         </HStack>
-        <HStack space={8} justifyContent="center">
+        <HStack space={5} justifyContent="center">
           <Pressable
             {...mainProps}
             onPress={() => navigation.navigate('PageAvaliacao')}
@@ -72,7 +85,7 @@ export const MenuTarefas = ({ }) => {
             <Text bold mt={3} fontSize={"xl"}>Condições</Text>
           </Pressable>
         </HStack>
-        <HStack space={8} justifyContent="center">
+        <HStack space={5} justifyContent="center">
           <Pressable
             {...mainProps}
           onPress={() => navigation.navigate('PageProdutos')}
@@ -88,51 +101,17 @@ export const MenuTarefas = ({ }) => {
             <Text bold mt={3} fontSize={"xl"}>Localização</Text>
           </Pressable>
         </HStack>
+        <Button
+          size={"lg"}
+          p={4}
+          borderRadius={8}
+          colorScheme="success"
+          rightIcon={
+            <Ionicons name="checkmark-circle-outline" size={25} color="white" />
+          }>
+          <Text bold fontSize={"xl"} mr={2} color="white">Salvar</Text>
+        </Button>
       </VStack>
-
-      {/*       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageImg')}>
-          <Feather name="image" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Imagem</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageFunc')}>
-          <Ionicons name="people" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Funcionarios</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageAvaliacao')}>
-          <Feather name="star" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Imagem</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageFunc')}>
-          <Ionicons name="people" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Funcionarios</Text>
-        </TouchableOpacity>
-      </View> */}
-
-    </Box>
+    </ScrollView>
   )
 }
-
-const styled = StyleSheet.create({
-  textTitle: {
-    color: 'black',
-    fontSize: 22,
-    fontWeight: 'bold',
-  },
-  ViewMenu: {
-    flex: 1,
-    padding: 20
-  },
-  buttons: {
-    padding: 10,
-    height: 100,
-    width: 110,
-    margin: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgray',
-    borderRadius: 20
-  }
-})

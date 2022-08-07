@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Form, MenuTarefas, NewActivity, PageAvaliacao, PageFunc, PageImg, PageProdutos } from '../screens';
+import { Form, MenuTarefas, NewActivity, PageAvaliacao, PageFunc, PageImg } from '../screens';
 import { Home } from '../screens/Home';
 import { ListDocs } from '../screens/ListDocs';
 import { Tasks } from '../screens/Tasks';
@@ -71,13 +71,6 @@ export const AppRoutes = () => {
         }}
         name='PageAvaliacao'
         component={PageAvaliacao}
-      />
-      <Screen
-        options={{
-          title: 'Cadastro Produtos'
-        }}
-        name='PageProdutos'
-        component={PageProdutos}
       />
     </Navigator>
   );
