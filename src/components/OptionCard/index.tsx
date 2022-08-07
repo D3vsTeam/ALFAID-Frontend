@@ -17,7 +17,11 @@ export const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "a
   
   return (
     <Box >
-      <Text bold fontSize={"xl"} color="alfa" mb={2}>{heading}</Text>
+      {heading !== '' ?
+      <Text bold fontSize={"xl"} color="alfa" mb={2}>{heading}</Text>:
+      <Text></Text>
+      }
+      
       <Pressable 
         h={70}
         borderRadius={8}
