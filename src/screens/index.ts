@@ -9,3 +9,4 @@ export * from './PageFunc'
 export * from './PageAvaliacao'
 export * from './PageProdutos'
 export * from './PageCondicoes'
+export * from "./VoiceRecognition"

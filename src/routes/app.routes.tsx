@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Form, MenuTarefas,VoiceRecognition ,NewActivity, PageAvaliacao, PageFunc, PageImg, PageProdutos, PageCondicoes, } from '../screens';
+import { Form, MenuTarefas, NewActivity, PageAvaliacao, PageFunc, PageImg, PageProdutos, PageCondicoes, } from '../screens';
 import { PageCamera } from '../screens/Camera';
 import { Home } from '../screens/Home';
 import { ListDocs } from '../screens/ListDocs';
 import { Tasks } from '../screens/Tasks';
+import VoiceRecognition from '../screens/VoiceRecognition';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 

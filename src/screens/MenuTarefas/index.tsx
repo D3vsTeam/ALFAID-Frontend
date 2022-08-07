@@ -49,7 +49,6 @@ export const MenuTarefas = () => {
         w={"full"}
         placeholder="Digte aqui a tarefa realizada..."
       />
-      <VoiceRecognition />
       <Heading my={4}>Opções</Heading>
       <VStack w={"full"} space={5} >
         <HStack space={5} justifyContent="center">
@@ -94,10 +93,10 @@ export const MenuTarefas = () => {
           </Pressable>
           <Pressable
             {...mainProps}
-          //onPress={() => navigation.navigate('PageFunc')}
+            onPress={() => navigation.navigate('VoiceRecognition')}
           >
-            <Ionicons name="navigate" size={30} color="rgba(0,0,0,.5)" />
-            <Text bold mt={3} fontSize={"xl"}>Localização</Text>
+            <Ionicons name="mic" size={30} color="rgba(0,0,0,.5)" />
+            <Text bold mt={3} fontSize={"xl"}>Gravações</Text>
           </Pressable>
         </HStack>
         <Button

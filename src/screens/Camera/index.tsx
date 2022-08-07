@@ -17,22 +17,13 @@ export const PageCamera = () => {
   const [capturedPhoto, setCapturePhoto] = useState(null);
   const [open, setOpen] = useState(false);
 
-
-
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await Permissions.askAsync();
       setHasPermission(status === 'granted');
+      console.log(status);
     })();
   }, []);
-
-  (async () => {
-    const { status } = await Permissions.askAsync();
-    setHasPermission(status === 'granted');
-    console.log(status);
-  })();
-}, [];
-
 
   if (hasPermission === null) {
     return <View />;
@@ -69,11 +60,11 @@ export const PageCamera = () => {
               bottom: 20,
               left: 20,
             }}
-            onPress={ () => {
-              setType(type === Camera.Constants.Type.back 
-                      ? Camera.Constants.Type.front 
-                      : Camera.Constants.Type.back
-                      );
+            onPress={() => {
+              setType(type === Camera.Constants.Type.back
+                ? Camera.Constants.Type.front
+                : Camera.Constants.Type.back
+              );
             }}>
             <Text style={{ fontSize: 20, marginBottom: 13, color: "#fff" }}> Trocar</Text>
           </TouchableOpacity>

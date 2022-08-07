@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { Audio } from 'expo-av';
 import * as Sharing from 'expo-sharing';
-import { Button, Text, View, VStack } from 'native-base';
+import { Button, HStack, Text, View, VStack } from 'native-base';
 
 const VoiceRecognition: React.FC = () => {
   const [recording, setRecording] = useState<Audio.Recording>();
@@ -50,14 +50,21 @@ const VoiceRecognition: React.FC = () => {
   }
 
 
-
   function getRecordingLines() {
     return recordings.map((recordingLine, index) => {
       return (
-        <VStack>
-          <Text>Recording {index + 1} - {recordingLine.duration}</Text>
-          <Button onPress={() => recordingLine.sound.replayAsync()}>Play</Button>
-          <Button onPress={() => Sharing.shareAsync(recordingLine.file)}>Share</Button>
+        <VStack space={8}>
+          <Text>Gravação nr: {index + 1} - {recordingLine.duration}</Text>
+          <HStack space={8}>
+            <Button
+              onPress={() => recordingLine.sound.replayAsync()}>
+              Tocar
+            </Button>
+            <Button
+              onPress={() => Sharing.shareAsync(recordingLine.file)}>
+              Salvar
+            </Button>
+          </HStack>
         </VStack>
       );
     });

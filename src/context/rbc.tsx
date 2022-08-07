@@ -20,7 +20,8 @@ export const RbcProvider: React.FC = ({ children }) => {
   }
 
   const insertTarefa = useCallback((tarefa: Tarefa) => {
-    if (!rbc.tarefa.includes(tarefa)) {
+    let index = rbc.tarefa.findIndex(t => t.descricao === tarefa.descricao)
+    if (index === -1) {
       setRbc(prev => {
         const newO = {...prev}
         newO.tarefa.push(tarefa)
@@ -28,10 +29,8 @@ export const RbcProvider: React.FC = ({ children }) => {
       })
     } else {
       setRbc(prev => {
-        let index = prev.tarefa.findIndex(t => t === tarefa)
-        const newTar = { ...prev };
-        newTar.tarefa[index] = tarefa;
-        return newTar;
+        prev.tarefa[index] = tarefa
+        return prev;
       })
     }
   }, [rbc])
