@@ -22,7 +22,7 @@ export const Home = () => {
   }
 
   return (
-    <Box paddingX={4} bgColor="muted.50" h={"full"}>
+    <Box paddingTop={20} paddingX={4} bgColor="muted.50" h={"full"}>
       <FuncionarioCard />
         {funcionario.isManager ? (
           <OptionCard 

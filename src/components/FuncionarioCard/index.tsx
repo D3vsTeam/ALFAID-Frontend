@@ -21,7 +21,7 @@ export const FuncionarioCard: React.FC = () => {
         borderWidth={1}
         borderColor={"gray.200"}
         bg={"white"}
-        my={4}
+        mb={4}
         borderRadius={8}
       >
         <Flex

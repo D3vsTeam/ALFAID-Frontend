@@ -3,15 +3,10 @@ import { getEquipe } from "./funcionarioService"
 import { getProdutos } from "./produtoService";
 
 export const buildOfflineData = async () => {
-/*   const [ equipes, produtos ] = await Promise.all([
+  const [ equipes, produtos ] = await Promise.all([
     getEquipe(), getProdutos()
-  ]); */
-
-  const equipes = await getEquipe();
-  //const produtos = await getProdutos();
-
-  console.log("builAAAAAAAAAAAAAd", equipes)
+  ]);
 
   await AsyncStorage.setItem("@AlfaID:equipes", JSON.stringify(equipes.data))
-  //await AsyncStorage.setItem("@AlfaID:produtos", JSON.stringify(produtos.data))
+  await AsyncStorage.setItem("@AlfaID:produtos", JSON.stringify(produtos.data))
 }
