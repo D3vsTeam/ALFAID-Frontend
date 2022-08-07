@@ -92,18 +92,6 @@ export const ProdutosList = () => {
           </ScrollView>
         </VStack>
       </Center>
-      <Fab
-        justifyContent='flex-end'
-        alignItems='flex-end'
-        bottom={5}
-        onPress={handleNext}
-        renderInPortal={false}
-        shadow={1}
-        colorScheme="success"
-        placement="bottom-right"
-        label={"Avançar"}
-        rightIcon={<Ionicons name="arrow-forward" size={20} color="white" />}
-      />
     </>
   );
 };
