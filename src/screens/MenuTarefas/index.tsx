@@ -89,50 +89,6 @@ export const MenuTarefas = ({ }) => {
           </Pressable>
         </HStack>
       </VStack>
-
-      {/*       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageImg')}>
-          <Feather name="image" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Imagem</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageFunc')}>
-          <Ionicons name="people" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Funcionarios</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageAvaliacao')}>
-          <Feather name="star" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Imagem</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styled.buttons} onPress={() => navigation.navigate('PageFunc')}>
-          <Ionicons name="people" size={24} color="rgba(0,0,0,.5)" />
-          <Text>Funcionarios</Text>
-        </TouchableOpacity>
-      </View> */}
-
     </Box>
   )
 }
-
-const styled = StyleSheet.create({
-  textTitle: {
-    color: 'black',
-    fontSize: 22,
-    fontWeight: 'bold',
-  },
-  ViewMenu: {
-    flex: 1,
-    padding: 20
-  },
-  buttons: {
-    padding: 10,
-    height: 100,
-    width: 110,
-    margin: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgray',
-    borderRadius: 20
-  }
-})
