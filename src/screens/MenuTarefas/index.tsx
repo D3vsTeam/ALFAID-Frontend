@@ -6,6 +6,7 @@ import { TarefaContext } from "../../context/tarefa";
 import { useRbc } from "../../hook/useRbc";
 import { useTarefa } from '../../hook/useTarefa';
 import { Tarefa } from "../../models/Tarefa";
+import VoiceRecognition from '../VoiceRecognition';
 
 
 export const MenuTarefas = () => {
@@ -48,6 +49,7 @@ export const MenuTarefas = () => {
         w={"full"}
         placeholder="Digte aqui a tarefa realizada..."
       />
+      <VoiceRecognition />
       <Heading my={4}>Opções</Heading>
       <VStack w={"full"} space={5} >
         <HStack space={5} justifyContent="center">
