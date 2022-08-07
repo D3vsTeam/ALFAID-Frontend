@@ -5,6 +5,7 @@ import {Camera, CameraType } from "expo-camera";
 import { useEffect, useRef } from "react";
 import {FontAwesome} from "@expo/vector-icons"
 import { MaterialIcons } from '@expo/vector-icons'; 
+import * as MediaLibrary from 'expo-media-library';
 
 export const PageImg = () => {
     const camRef = useRef (null);
