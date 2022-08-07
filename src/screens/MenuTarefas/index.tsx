@@ -88,7 +88,7 @@ export const MenuTarefas = ({ }) => {
         <HStack space={5} justifyContent="center">
           <Pressable
             {...mainProps}
-          //onPress={() => navigation.navigate('PageFunc')}
+          onPress={() => navigation.navigate('PageProdutos')}
           >
             <Ionicons name="cube" size={30} color="rgba(0,0,0,.5)" />
             <Text bold mt={3} fontSize={"xl"}>Produto</Text>

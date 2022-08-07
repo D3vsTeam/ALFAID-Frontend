@@ -14,7 +14,7 @@ export declare global {
       PageImg: undefined,
       PageFunc: undefined,
       PageAvaliacao: undefined,
-      PageCamera: undefined
+      PageProdutos: undefined,
     }
    }
 }
