@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
-// import { Container } from './styles';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Audio } from 'expo-av';
 import * as Sharing from 'expo-sharing';
-import { Button, HStack, Text, View, VStack } from 'native-base';
+import { Box, Button, Center, HStack, Pressable, Text, View, VStack } from 'native-base';
 
 const VoiceRecognition: React.FC = () => {
   const [recording, setRecording] = useState<Audio.Recording>();
@@ -53,17 +52,37 @@ const VoiceRecognition: React.FC = () => {
   function getRecordingLines() {
     return recordings.map((recordingLine, index) => {
       return (
-        <VStack space={8}>
+        <VStack space={2}>
           <Text>Gravação nr: {index + 1} - {recordingLine.duration}</Text>
           <HStack space={8}>
-            <Button
-              onPress={() => recordingLine.sound.replayAsync()}>
-              Tocar
-            </Button>
-            <Button
-              onPress={() => Sharing.shareAsync(recordingLine.file)}>
-              Salvar
-            </Button>
+            <Pressable
+              flex={1}
+              padding={2}
+              bgColor={"darkBlue.700"}
+              borderRadius={8}
+              onPress={() => recordingLine.sound.replayAsync()}
+            >
+              <Center flexDir={"row"}>
+                <Ionicons name="play" size={20} color="white" />
+                <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
+                  Tocar
+                </Text>
+              </Center>
+            </Pressable>
+            <Pressable
+              flex={1}
+              padding={2}
+              bgColor={"darkBlue.700"}
+              borderRadius={8}
+              onPress={() => Sharing.shareAsync(recordingLine.file)}
+            >
+              <Center flexDir={"row"}>
+                <Ionicons name="download" size={20} color="white" />
+                <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
+                  Salvar
+                </Text>
+              </Center>
+            </Pressable>
           </HStack>
         </VStack>
       );
@@ -71,14 +90,24 @@ const VoiceRecognition: React.FC = () => {
   }
 
   return (
-    <View>
+    <Box p={5}>
       <Text>{message}</Text>
-      <Button
-        onPress={recording ? stopRecording : startRecording}>
-        {recording ? 'Stop Recording' : 'Start Recording'}
-      </Button>
+      <Pressable
+        flex={1}
+        padding={2}
+        bgColor={recording ? "red.700" : "darkBlue.700"}
+        borderRadius={8}
+        onPress={recording ? stopRecording : startRecording}
+      >
+        <Center flexDir={"row"}>
+          <Ionicons name={recording ? 'pause' : 'mic'} size={20} color="white" />
+          <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
+            {recording ? 'Stop Recording' : 'Start Recording'}
+          </Text>
+        </Center>
+      </Pressable>
       {getRecordingLines()}
-    </View>
+    </Box>
   );
 }
 
