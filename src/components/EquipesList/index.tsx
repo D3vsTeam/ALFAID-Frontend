@@ -20,6 +20,7 @@ export const EquipesList = () => {
       if (equipes) {
         setEquipes(JSON.parse(equipes))
       }
+      console.log(equipes)
     })()
   }, [])
 
