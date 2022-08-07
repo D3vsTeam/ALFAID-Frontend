@@ -29,13 +29,12 @@ export const ProdutosList = () => {
     })()
   }, [])
 
-  const handleAddProdutos = (isSelected: boolean, id: string) => {
-    const teste = produtos?.find(item => item.codigo == id)
+  const handleAddProdutos = (isSelected: boolean, produto: Produto) => {
     setRbc(prev => {
       if (isSelected) {
-        prev.produtos.push(teste)
+        prev.produtos.push(produto)
       } else {
-        let index = prev.produtos.findIndex(f => f === teste);
+        let index = prev.produtos.findIndex(f => f === produto);
         prev.produtos.splice(index, 1)
       }
       return prev;
@@ -76,8 +75,10 @@ export const ProdutosList = () => {
                   key={derivacao.produto_id + i.toString()}
                 >
                   <Checkbox
+
                     onChange={(isSelected) => handleAddProdutos(isSelected, derivacao.produto_id )}
                     value={derivacao.descricao}
+
                     size="lg"
                     colorScheme="info"
                   >

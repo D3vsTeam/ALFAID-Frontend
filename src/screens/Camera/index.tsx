@@ -4,8 +4,9 @@ import { PickImage } from '../../components'
 import { Camera, CameraType } from "expo-camera";
 import { useEffect, useRef } from "react";
 import { FontAwesome } from "@expo/vector-icons"
-import { MaterialIcons } from '@expo/vector-icons';
 import * as Permissions from 'expo-permissions';
+import { MaterialIcons } from '@expo/vector-icons';
+
 import *as MediaLibrary from 'expo-media-library'
 
 
@@ -13,17 +14,24 @@ export const PageCamera = () => {
   const camRef = useRef(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [hasPermission, setHasPermission] = useState(false);
-  const [capturedPhoto, setCapturePhoto] = useState("");
+  const [capturedPhoto, setCapturePhoto] = useState(null);
   const [open, setOpen] = useState(false);
+
 
 
   useEffect(() => {
     (async () => {
-      const { status } = await Permissions.askAsync();
+      const { status } = await Camera.requestPermissionsAsync();
       setHasPermission(status === 'granted');
-      console.log(status);
     })();
   }, []);
+
+  (async () => {
+    const { status } = await Permissions.askAsync();
+    setHasPermission(status === 'granted');
+    console.log(status);
+  })();
+}, [];
 
 
   if (hasPermission === null) {
@@ -34,7 +42,7 @@ export const PageCamera = () => {
   }
 
   async function takePickute() {
-    if (camRef.current) {
+    if (camRef) {
       const data = await camRef.current.takePicturesAsync();
       setCapturePhoto(data.uri);
       setOpen(true);
@@ -61,11 +69,11 @@ export const PageCamera = () => {
               bottom: 20,
               left: 20,
             }}
-            onPress={() => {
-              setType(type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-              );
+            onPress={ () => {
+              setType(type === Camera.Constants.Type.back 
+                      ? Camera.Constants.Type.front 
+                      : Camera.Constants.Type.back
+                      );
             }}>
             <Text style={{ fontSize: 20, marginBottom: 13, color: "#fff" }}> Trocar</Text>
           </TouchableOpacity>

@@ -6,13 +6,17 @@ import { Tarefa } from "./Tarefa";
 export class RBC {
   equipes: Funcionario[] = [];
   produtos: Produto[] =[];
-  tarefa: Tarefa[] = [{
+  tarefa: Tarefa[] = [
+  {
     completa: false,
     descricao: "Teste 1",
-    equipes: []
-  }, {
+    equipes: [],
+    avaliacao: 2
+  }, 
+  {
     completa: true,
     descricao: "Teste 3",
-    equipes: []
+    equipes: [],
+    avaliacao: 1
   }];
 }
