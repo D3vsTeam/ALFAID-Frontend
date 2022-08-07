@@ -1,13 +1,10 @@
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { Box, Button, FormControl, Heading, Icon, Image, Input, InputGroup, View, VStack } from "native-base";
 import React, { useState } from "react";
-import { Container, LogoImage, Title } from './styles';
-import logo from '../../assets/logo.png'
-import bg from '../../assets/bg.jpg'
-import { Box, Button, Flex, FormControl, Heading, Icon, Image, Input, InputGroup, KeyboardAvoidingView, NativeBaseProvider, ScrollView, Text, View, VStack } from "native-base";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import bg from '../../assets/bg.jpg';
 import { useAuth } from "../../hook/useAuth";
 import { Funcionario } from "../../models/Funcionario";
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
 
 const Auth: React.FC = () => {
