@@ -18,8 +18,13 @@ export const ProdutosList = () => {
   useEffect(() => {
     (async () => {
       const derivacao = await AsyncStorage.getItem("@AlfaID:derivacoes");
+      const produto = await AsyncStorage.getItem("@AlfaID:produtos");
+
       if (derivacao) {
         setDerivacoes(JSON.parse(derivacao))
+      }
+      if(produto){
+        setProdutos(JSON.parse(produto))
       }
     })()
   }, [])
@@ -62,20 +67,22 @@ export const ProdutosList = () => {
           <ScrollView>
           {filteredList && (
             <VStack space={10}>
-              {filteredList.map((produto, i) => (
+              {filteredList.map((derivacao, i) => (
                 <HStack
                   w="full"
                   justifyContent="space-between"
                   alignItems="center"
-                  key={produto.produto_id + i.toString()}
+                  key={derivacao.produto_id + i.toString()}
                 >
                   <Checkbox
-                    onChange={(isSelected) => handleAddProdutos(isSelected, produto.produto )}
-                    value={produto.descricao}
+
+                    onChange={(isSelected) => handleAddProdutos(isSelected, derivacao.produto_id )}
+                    value={derivacao.descricao}
+
                     size="lg"
                     colorScheme="info"
                   >
-                    {"("+produto.descricao+") "+produto.produto.descricao}
+                    {"("+derivacao.descricao+") "+ derivacao.produto.descricao}
                   </Checkbox>
 
                 </HStack>
