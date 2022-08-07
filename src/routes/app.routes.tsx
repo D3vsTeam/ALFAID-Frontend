@@ -1,8 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
-import { Form,MenuTarefas, PageImg, PageFunc,PageAvaliacao } from '../screens';
+import { Form, MenuTarefas, NewActivity, PageAvaliacao, PageFunc, PageImg } from '../screens';
 import { Home } from '../screens/Home';
-import { NewActivity } from '../screens';
 import { ListDocs } from '../screens/ListDocs';
 import { Tasks } from '../screens/Tasks';
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -14,6 +12,9 @@ export const AppRoutes = () => {
       <Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false
+        }}
       />
       <Screen
         name='Form'
