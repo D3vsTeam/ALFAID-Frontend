@@ -4,22 +4,23 @@ import { PickImage } from '../../components'
 import { Camera, CameraType } from "expo-camera";
 import { useEffect, useRef } from "react";
 import { FontAwesome } from "@expo/vector-icons"
-import { MaterialIcons } from '@expo/vector-icons';
 import * as Permissions from 'expo-permissions';
+import { MaterialIcons } from '@expo/vector-icons';
+
 import *as MediaLibrary from 'expo-media-library'
 
 
 export const PageCamera = () => {
   const camRef = useRef(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
-  const [hasPermission, setHasPermission] = useState(false);
-  const [capturedPhoto, setCapturePhoto] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [type, setType] = useState(CameraType.back);
+  const [hasPermission, setHasPermission] = useState(true);
+  const [capturedPhoto, setCapturePhoto] = useState("");
+  const [open, setOpen] = useState(true);
 
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
@@ -28,9 +29,7 @@ export const PageCamera = () => {
     const { status } = await Permissions.askAsync();
     setHasPermission(status === 'granted');
     console.log(status);
-  })();
-}, [];
-
+      })();
 
   if (hasPermission === null) {
     return <View />;
@@ -67,9 +66,9 @@ export const PageCamera = () => {
               left: 20,
             }}
             onPress={ () => {
-              setType(type === Camera.Constants.Type.back 
-                      ? Camera.Constants.Type.front 
-                      : Camera.Constants.Type.back
+              setType (type === CameraType.back 
+                      ? CameraType.front 
+                      : CameraType.back
                       );
             }}>
             <Text style={{ fontSize: 20, marginBottom: 13, color: "#fff" }}> Trocar</Text>
