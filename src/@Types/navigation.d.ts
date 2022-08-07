@@ -15,6 +15,7 @@ export declare global {
       PageFunc: undefined,
       PageAvaliacao: undefined,
       PageProdutos: undefined,
+      PageCondicoes: undefined
     }
    }
 }
