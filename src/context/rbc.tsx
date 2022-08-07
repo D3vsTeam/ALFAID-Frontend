@@ -4,15 +4,14 @@ import { RBC } from "../models/RBC";
 type RbcContextData = {
   rbc: RBC,
   saveRbcInternal: () => void;
-  setRbc: React.Dispatch<React.SetStateAction<RBC>>,
-  initializeRbc: () => void;
+  setRbc: React.Dispatch<React.SetStateAction<RBC>>
 }
 
 export const RbcContext = createContext<RbcContextData>({} as RbcContextData);
 
 export const RbcProvider: React.FC = ({ children }) => {
   const [rbc, setRbc] = useState<RBC>(new RBC());
-
+  console.log(new RBC().tarefa)
 
   useEffect(() => {
     (async () => {
@@ -24,12 +23,8 @@ export const RbcProvider: React.FC = ({ children }) => {
 
   }
 
-  const initializeRbc = () => {
-    setRbc(new RBC())
-  }
-
   return (
-    <RbcContext.Provider value={{ rbc, saveRbcInternal, setRbc, initializeRbc }}>
+    <RbcContext.Provider value={{ rbc, saveRbcInternal, setRbc }}>
       {children}
     </RbcContext.Provider>
   )

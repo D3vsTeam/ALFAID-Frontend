@@ -2,46 +2,48 @@ import { useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
 import { useAuth } from '../../hook/useAuth';
 import { FuncionarioCard, OptionCard } from '../../components'
-
-
+import { View } from 'react-native';
 
 export const Home = () => {
   const { signOut, funcionario } = useAuth();
   const navigation = useNavigation();
 
   const handlePress = () => {
+    console.log(funcionario)
     navigation.navigate('Form');
   }
   const handlePressRead = () => {
     navigation.navigate('ListDocs')
   }
 
-
   if (!funcionario) {
     return <></>
   }
 
   return (
-    <Box paddingX={4} bgColor="muted.50" h={"full"}>
+    <Box paddingTop={20} paddingX={4} bgColor="muted.50" h={"full"}>
       <FuncionarioCard />
         {funcionario.isManager ? (
           <OptionCard 
-            heading='RDC' 
-            label='Visualizar'
-            onPress={handlePress}
+            heading='RDO' 
+            label='Visualizar e Aprovar'
+            onPress={handlePressRead}
           />
         ) : (
-          <OptionCard 
+          <View>
+            <OptionCard 
             heading='RDC' 
             label='Gerar um novo RDC'
             onPress={handlePress}
-          />
+            />
+            <OptionCard 
+            heading=''
+            label='Visualizar'
+            onPress={handlePressRead}
+            />
+          </View>
         )}
-        <OptionCard 
-          heading='' 
-          label='Ler Gerados'
-          onPress={handlePressRead}
-        />
+
     </Box>
   )
 }
