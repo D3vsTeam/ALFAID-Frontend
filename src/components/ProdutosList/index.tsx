@@ -76,7 +76,7 @@ export const ProdutosList = () => {
                 >
                   <Checkbox
 
-                    onChange={(isSelected) => handleAddProdutos(isSelected, derivacao.produto_id )}
+                    onChange={(isSelected) => handleAddProdutos(isSelected, derivacao.produto )}
                     value={derivacao.descricao}
 
                     size="lg"
