@@ -10,7 +10,6 @@ export const Home = () => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    console.log(funcionario)
     navigation.navigate('Form');
   }
   const handlePressRead = () => {

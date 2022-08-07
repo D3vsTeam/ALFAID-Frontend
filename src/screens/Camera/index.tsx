@@ -44,7 +44,6 @@ export const PageCamera = () => {
       const data = await camRef.current.takePicturesAsync();
       setCapturePhoto(data.uri);
       setOpen(true);
-      console.log(data);
     }
   }
 
