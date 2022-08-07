@@ -3,7 +3,8 @@ import { Funcionario } from "./Funcionario";
 export class Tarefa {
   descricao: string;
   equipes: Funcionario[];
-  completa: boolean
+  completa: boolean;
+  avaliacao: number
 
   constructor() {
     this.descricao = ""

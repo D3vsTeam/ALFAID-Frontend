@@ -15,12 +15,6 @@ export const RbcContext = createContext<RbcContextData>({} as RbcContextData);
 export const RbcProvider: React.FC = ({ children }) => {
   const [rbc, setRbc] = useState<RBC>(new RBC());
 
-  useEffect(() => {
-    (async () => {
-      //const storagedFunc = await AsyncStorage.getItem("@AlfaID:funcionario")
-    })()
-  }, [])
-
   const saveRbcInternal = () => {
 
   }
@@ -28,8 +22,9 @@ export const RbcProvider: React.FC = ({ children }) => {
   const insertTarefa = useCallback((tarefa: Tarefa) => {
     if (!rbc.tarefa.includes(tarefa)) {
       setRbc(prev => {
-        prev.tarefa.push(tarefa)
-        return prev;
+        const newO = {...prev}
+        newO.tarefa.push(tarefa)
+        return newO;
       })
     } else {
       setRbc(prev => {
@@ -39,7 +34,7 @@ export const RbcProvider: React.FC = ({ children }) => {
         return newTar;
       })
     }
-  }, [rbc.tarefa])
+  }, [rbc])
 
   return (
     <RbcContext.Provider value={{ rbc, saveRbcInternal, setRbc, insertTarefa }}>

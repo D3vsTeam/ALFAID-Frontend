@@ -4,57 +4,61 @@ import React from "react";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { AddAtividades } from '../../components'
+import { RbcContext } from "../../context/rbc";
 import { useRbc } from "../../hook/useRbc";
+import { useTarefa } from "../../hook/useTarefa";
 import { Tarefa } from "../../models/Tarefa";
 
 export const Tasks = () => {
-  const { rbc } = useRbc();
-  const navigate  = useNavigation();
+  //const { rbc } = useRbc();
+  const { } = useTarefa();
+  const { updateTarefa } = useTarefa();
+  const navigate = useNavigation();
 
   const handleOpenTaskForm = (tarefa?: Tarefa) => {
-    navigate.navigate("MenuTarefas", {tarefa})
+    if (tarefa) {
+      updateTarefa(tarefa)
+    } else {
+      updateTarefa(new Tarefa())
+    }
+
+    navigate.navigate("MenuTarefas")
   }
-
-  useEffect(() => {
-    console.log(rbc, "AAAAAAAAAAAAA")
-  }, [])
-
-  useEffect(() => {
-    console.log("ALTEROU")
-  }, [rbc])
-
-  console.log("BUCETYA")
 
   return (
     <>
       <Box p={6}>
-        <FlatList
-          data={rbc.tarefa}
-          renderItem={({ item }) => (
-            <Pressable
-              onPress={() => handleOpenTaskForm(item)}
-              mt={2}
-              p={4}
-              borderRadius={6}
-              borderWidth={1}
-              bgColor={item.completa ? "success.50" : "warning.50"}
-              borderColor={item.completa ? "success.200" : "warning.200"}
-            >
-              <HStack space={2} justifyContent="space-between" >
-                <VStack>
-                  <Text fontSize={"lg"} bold>
-                    {item.descricao}
-                  </Text>
-                  <Text>
-                    Equipe de: {item.equipes.length} pessoas.
-                  </Text>
-                </VStack>
-                <Spacer />
-              </HStack>
-            </Pressable>
+        <RbcContext.Consumer>
+          {({ rbc }) => (
+            <FlatList
+              data={rbc.tarefa}
+              renderItem={({ item }) => (
+                <Pressable
+                  onPress={() => handleOpenTaskForm(item)}
+                  mt={2}
+                  p={4}
+                  borderRadius={6}
+                  borderWidth={1}
+                  bgColor={item.completa ? "success.50" : "warning.50"}
+                  borderColor={item.completa ? "success.200" : "warning.200"}
+                >
+                  <HStack space={2} justifyContent="space-between" >
+                    <VStack>
+                      <Text fontSize={"lg"} bold>
+                        {item.descricao}
+                      </Text>
+                      <Text>
+                        Equipe de: {item.equipes.length} pessoas.
+                      </Text>
+                    </VStack>
+                    <Spacer />
+                  </HStack>
+                </Pressable>
+              )}
+              keyExtractor={item => item.descricao}
+            />
           )}
-          keyExtractor={item => item.descricao}
-        />
+        </RbcContext.Consumer>
       </Box>
       <Fab
         bottom={30}

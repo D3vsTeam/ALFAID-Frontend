@@ -8,13 +8,13 @@ export declare global {
       NewActivity: undefined,
       ListDocs: undefined,
       Tasks: undefined,
-      MenuTarefas: {
-        tarefa?: Tarefa
-      },
+      MenuTarefas: undefined,
       PageImg: undefined,
       PageFunc: undefined,
       PageAvaliacao: undefined,
       PageProdutos: undefined,
+      PageCondicoes: undefined
+      PageCamera: undefined
     }
    }
 }
