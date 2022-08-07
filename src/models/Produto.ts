@@ -8,4 +8,5 @@ export interface Derivacoes {
   produto_id: string
   derivacao: string
   descricao: string
+  produto: Produto
 }

@@ -3,12 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Center, Checkbox, Fab, HStack, Input, useToast, VStack } from "native-base";
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from "react";
-import { Funcionario } from "../../models/Funcionario";
 import { useRbc } from '../../hook/useRbc';
-import { getProdutos } from '../../service/produtoService';
 import { Derivacoes, Produto } from '../../models/Produto';
 import { ScrollView } from 'react-native';
-import { ItemClick } from 'native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types';
 
 export const ProdutosList = () => {
   const toast = useToast();
@@ -22,6 +19,7 @@ export const ProdutosList = () => {
     (async () => {
       const derivacao = await AsyncStorage.getItem("@AlfaID:derivacoes");
       const produto = await AsyncStorage.getItem("@AlfaID:produtos");
+      console.log(derivacao)
       if (derivacao) {
         setDerivacoes(JSON.parse(derivacao))
       }
@@ -34,7 +32,6 @@ export const ProdutosList = () => {
 
   const handleAddProdutos = (isSelected: boolean, id: string) => {
     const teste = produtos?.find(item => item.codigo == id)
-    console.log(id)
     setRbc(prev => {
       if (isSelected) {
         prev.produtos.push(teste)
@@ -85,7 +82,7 @@ export const ProdutosList = () => {
                     size="lg"
                     colorScheme="info"
                   >
-                    {produto.descricao}
+                    {"("+produto.descricao+") "+produto.produto.descricao}
                   </Checkbox>
 
                 </HStack>

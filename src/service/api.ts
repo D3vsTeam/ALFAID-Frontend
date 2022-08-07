@@ -8,7 +8,6 @@ export const api = axios.create({
 api.interceptors.request.use(async config => {
   const token = await AsyncStorage.getItem("@AlfaID:token");
 
-  console.log(token)
   const headers = { ...config.headers };
 
   if (token) {

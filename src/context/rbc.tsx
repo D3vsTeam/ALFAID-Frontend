@@ -11,7 +11,6 @@ export const RbcContext = createContext<RbcContextData>({} as RbcContextData);
 
 export const RbcProvider: React.FC = ({ children }) => {
   const [rbc, setRbc] = useState<RBC>(new RBC());
-  console.log(new RBC().tarefa)
 
   useEffect(() => {
     (async () => {
