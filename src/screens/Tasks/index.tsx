@@ -1,18 +1,29 @@
 import { useNavigation } from "@react-navigation/native";
 import { AddIcon, Box, Fab, FlatList, Heading, HStack, Pressable, Spacer, Text, VStack } from "native-base";
 import React from "react";
+import { useEffect } from "react";
 import { View } from "react-native";
 import { AddAtividades } from '../../components'
 import { useRbc } from "../../hook/useRbc";
 import { Tarefa } from "../../models/Tarefa";
 
-export const Tasks = ({ route, navigation }) => {
+export const Tasks = () => {
   const { rbc } = useRbc();
   const navigate  = useNavigation();
 
   const handleOpenTaskForm = (tarefa?: Tarefa) => {
     navigate.navigate("MenuTarefas", {tarefa})
   }
+
+  useEffect(() => {
+    console.log(rbc, "AAAAAAAAAAAAA")
+  }, [])
+
+  useEffect(() => {
+    console.log("ALTEROU")
+  }, [rbc])
+
+  console.log("BUCETYA")
 
   return (
     <>

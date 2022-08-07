@@ -18,7 +18,7 @@ export const OptionCard: React.FC<OptionCardType> = ({ heading, label, icon = "a
   return (
     <Box >
       {heading !== '' ?
-      <Text bold fontSize={"xl"} color="alfa" mb={2}>{heading}</Text>:
+      <Text bold fontSize={"xl"} mb={2}>{heading}</Text>:
       <Text></Text>
       }
       
