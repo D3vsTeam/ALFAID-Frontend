@@ -1,3 +1,5 @@
+import { Tarefa } from "../models/Tarefa"
+
 export declare global {
    namespace ReactNavigation {
     interface RootParamList {
@@ -6,7 +8,9 @@ export declare global {
       NewActivity: undefined,
       ListDocs: undefined,
       Tasks: undefined,
-      MenuTarefas: undefined,
+      MenuTarefas: {
+        tarefa?: Tarefa
+      },
       PageImg: undefined,
       PageFunc: undefined,
       PageAvaliacao: undefined

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, TextInput, Text ,StyleSheet, TouchableOpacity} from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
-export const MenuTarefas = ( ) => {
-    const navigation = useNavigation()
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Tarefa } from "../../models/Tarefa";
+import { useRbc } from "../../hook/useRbc";
+
+
+export const MenuTarefas = ({  }) => {
+    const { rbc } = useRbc();
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { tarefa } = route.params as { tarefa: Tarefa }
+
     return(
         <View style={styled.ViewMenu}>
             <Text style={styled.textTitle}>Observações</Text>
