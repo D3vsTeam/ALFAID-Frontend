@@ -13,7 +13,8 @@ export declare global {
       },
       PageImg: undefined,
       PageFunc: undefined,
-      PageAvaliacao: undefined
+      PageAvaliacao: undefined,
+      PageProdutos: undefined,
     }
    }
 }
