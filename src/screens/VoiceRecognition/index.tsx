@@ -92,20 +92,20 @@ const VoiceRecognition: React.FC = () => {
   return (
     <Box p={5}>
       <Text>{message}</Text>
-      <Pressable
-        flex={1}
+      <Button
+        w={"full"}
         padding={2}
         bgColor={recording ? "red.700" : "darkBlue.700"}
         borderRadius={8}
         onPress={recording ? stopRecording : startRecording}
-      >
-        <Center flexDir={"row"}>
+        endIcon={
           <Ionicons name={recording ? 'pause' : 'mic'} size={20} color="white" />
-          <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
-            {recording ? 'Stop Recording' : 'Start Recording'}
-          </Text>
-        </Center>
-      </Pressable>
+        }
+      >
+        <Text ml={5} textAlign="center" fontSize={"lg"} color="white">
+          Start Recording
+        </Text>
+      </Button>
       {getRecordingLines()}
     </Box>
   );
