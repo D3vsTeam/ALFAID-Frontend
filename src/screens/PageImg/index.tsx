@@ -1,12 +1,11 @@
-import {useState} from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Modal, Image, SafeAreaView} from "react-native";
-import {PickImage} from '../../components'
-import {Camera, CameraType } from "expo-camera";
-import { useEffect, useRef } from "react";
-import {FontAwesome} from "@expo/vector-icons"
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { Box, Button, Center, Flex, HStack, IconButton, Image, Pressable, Text, VStack } from "native-base"
+import React, { useState } from "react";
+import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 export const PageImg = () => {
+  const { tarefa } = useTarefa();
   const [image, setImage] = useState<string>();
   const navigation = useNavigation();
 

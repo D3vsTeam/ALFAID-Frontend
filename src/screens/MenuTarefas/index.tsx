@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,28 +6,24 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Tarefa } from "../../models/Tarefa";
 import { useRbc } from "../../hook/useRbc";
 import { Box, FormControl, HStack, Input, InputGroup, TextArea, VStack, Pressable, Text, Heading, Icon, ScrollView, Button, Spacer } from "native-base";
+import { TarefaContext } from "../../context/tarefa";
 
 
-export const MenuTarefas = ({ }) => {
-  const { rbc, setRbc } = useRbc();
+export const MenuTarefas = () => {
+
+  const { rbc, insertTarefa } = useRbc();
   const navigation = useNavigation();
   const route = useRoute();
   const { tarefa } = route.params as { tarefa: Tarefa }
+  const [task, setTask] = useState<Tarefa>(tarefa);
 
   useEffect(() => {
-    if (!tarefa) {
-      setRbc(prev => {
-        prev.tarefa.push(new Tarefa())
-        return prev;
-      })
-    } else {
-      
-    }
+    if (!tarefa) setTask(new Tarefa())
   }, [])
 
   const mainProps = {
     w: 170,
-    h: 130,
+    h: 125,
     background: "gray.50",
     justifyContent: "center",
     alignItems: "center",
@@ -35,6 +31,12 @@ export const MenuTarefas = ({ }) => {
     borderWidth: 1,
     borderColor: "gray.300",
     shadow: "1",
+  }
+
+  const handleSave = () => {
+    insertTarefa(task)
+
+    navigation.goBack()
   }
 
   return (
@@ -88,7 +90,7 @@ export const MenuTarefas = ({ }) => {
         <HStack space={5} justifyContent="center">
           <Pressable
             {...mainProps}
-          onPress={() => navigation.navigate('PageProdutos')}
+          //onPress={() => navigation.navigate('PageFunc')}
           >
             <Ionicons name="cube" size={30} color="rgba(0,0,0,.5)" />
             <Text bold mt={3} fontSize={"xl"}>Produto</Text>
