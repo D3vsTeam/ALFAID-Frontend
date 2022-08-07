@@ -10,7 +10,6 @@ import { Tarefa } from "../../models/Tarefa";
 export const Tasks = () => {
   const { rbc } = useRbc();
   const navigate  = useNavigation();
-  const .
 
   const handleOpenTaskForm = (tarefa?: Tarefa) => {
     navigate.navigate("MenuTarefas", {tarefa})
