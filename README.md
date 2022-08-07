@@ -22,6 +22,7 @@ Run
   or
   npm start
 ```
+Baixar aplicativo Expo e escanear QRCODE
 
 ## Autores
 
