@@ -13,8 +13,9 @@ export declare global {
       PageFunc: undefined,
       PageAvaliacao: undefined,
       PageProdutos: undefined,
-      PageCondicoes: undefined
-      PageCamera: undefined
+      PageCondicoes: undefined,
+      PageCamera: undefined,
+      VoiceRecognition: undefined
     }
    }
 }
