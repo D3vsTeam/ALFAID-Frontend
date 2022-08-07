@@ -13,7 +13,6 @@ const Auth: React.FC = () => {
   const [show, setShow] = React.useState(false);
 
   const handleLogin = () => {
-    signIn({ cpf: '31343384619', senha: 'alfa@313' })
     if (values?.cpf && values.senha) {
       signIn(values)
     }
