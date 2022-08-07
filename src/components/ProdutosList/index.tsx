@@ -18,25 +18,18 @@ export const ProdutosList = () => {
   useEffect(() => {
     (async () => {
       const derivacao = await AsyncStorage.getItem("@AlfaID:derivacoes");
-      const produto = await AsyncStorage.getItem("@AlfaID:produtos");
-      console.log(derivacao)
       if (derivacao) {
         setDerivacoes(JSON.parse(derivacao))
       }
-      if(produto){
-        setProdutos(JSON.parse(produto))
-      }
-      console.log(derivacao)
     })()
   }, [])
 
-  const handleAddProdutos = (isSelected: boolean, id: string) => {
-    const teste = produtos?.find(item => item.codigo == id)
+  const handleAddProdutos = (isSelected: boolean, produto: Produto) => {
     setRbc(prev => {
       if (isSelected) {
-        prev.produtos.push(teste)
+        prev.produtos.push(produto)
       } else {
-        let index = prev.produtos.findIndex(f => f === teste);
+        let index = prev.produtos.findIndex(f => f === produto);
         prev.produtos.splice(index, 1)
       }
       return prev;
@@ -77,7 +70,7 @@ export const ProdutosList = () => {
                   key={produto.produto_id + i.toString()}
                 >
                   <Checkbox
-                    onChange={(isSelected) => handleAddProdutos(isSelected, produto.produto_id )}
+                    onChange={(isSelected) => handleAddProdutos(isSelected, produto.produto )}
                     value={produto.descricao}
                     size="lg"
                     colorScheme="info"
